@@ -1,20 +1,34 @@
-# :checkered_flag: NOME DO PROJETO
+# :checkered_flag: SongBox
 
-Breve descrição do que o seu projeto faz.
+Um site focado na compartilhamento de opiniões sobre músicas, permitindo que usuários criem suas própria listas, avaliem-as, compartilhem com outros usuários e intererajam entre si por meio de comentários.
 
 ## :technologist: Membros da equipe
 
-Matrícula, nome e curso dos participantes.
+508578 - Victor Martins Vieira - Engenharia de software
 
 ## :people_holding_hands: Papéis ou tipos de usuário da aplicação
 
-Informe aqui os tipos de usuário que irão interagir com a aplicação. Ex: administrador, locador, locatario, usuário não logado.
-
-> Tenha em mente que obrigatoriamente a aplicação deve possuir funcionalidades acessíveis a todos os tipos de usuário e outra funcionalidades restritas a certos tipos de usuários.
+- **Usuário logado**: Pode criar suas listas, avaliar músicas, visualizar e comentar listas de outros usuários.
+- **Usuário não logado**: Pode visualizar listas de outros usuários sem interajir.
 
 ## :spiral_calendar: Entidades ou tabelas do sistema
 
-Liste as principais entidades do sistema.
+- Usuario
+  - descrição
+  - nome de usuário
+  - foto de perfil
+  - foto banner
+- Listas
+  - descrição
+  - título
+  - tags
+  - autor
+  - musicas
+- Resenha
+  - musica
+  - texto resenha
+  - nota
+  
 
 ## :triangular_flag_on_post:	 Principais funcionalidades da aplicação
 
