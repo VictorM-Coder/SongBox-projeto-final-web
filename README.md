@@ -1,7 +1,6 @@
 # :checkered_flag: SongBox
 
-Um site focado na compartilhamento de opiniões sobre músicas, permitindo que usuários criem resenhas para músicas, criem suas próprias listas eas avaliaem, mpartilhem com outros usuários e intererajam entre si por meio de comentários.
-
+Um site focado na compartilhamento de opiniões sobre músicas, permitindo que usuários criem resenhas para músicas, criem suas próprias playlists, e interajam entre si por meio de comentários e avaliações.
 ## :technologist: Membros da equipe
 
 508578 - Victor Martins Vieira - Engenharia de software
@@ -23,11 +22,11 @@ Um site focado na compartilhamento de opiniões sobre músicas, permitindo que u
   - título
   - tags
   - autor
-  - musicas
+  - músicas
   - likes
   - comentários
 - Resenha
-  - musica
+  - música
   - título
   - tags
   - texto resenha
@@ -39,11 +38,11 @@ Um site focado na compartilhamento de opiniões sobre músicas, permitindo que u
 ## :triangular_flag_on_post:	 Principais funcionalidades da aplicação
 
 - Criar playlists de músicas vinculadas ao seu perfil, estas listas poderão ter títulos e descrições definidos pelo criador - O usuário precisará estar logado para criar uma lista, editar ou deletar, mas poderá visualizar sem estar logado;
-- Avaliar uma música: Um usuário poderá fazer uma resenha para uma música individual - O usuário precisá estar logado para criar, editar ou deletar uma resenha, mas poderá visualizar sem estar logado
+- Avaliar uma música: Um usuário poderá fazer uma resenha para uma música individual - O usuário precisará estar logado para criar, editar ou deletar uma resenha, mas poderá visualizar sem estar logado
 - Usuários logados poderão comentar ou "dar like" em playlists e resenhas de outros usuários
 - Usuários logados poderão editar seu perfil, adicionando um banner, foto de perfil, um nome de usuário personalizado e uma breve descrição sobre seus gostos musicais.
 - Visualizar estatíticas internas sobre músicas, como média das notas, quantidade de avaliações, dentre outros - Todos os usuários poderão acessar essa funcionalidade
-- Acessar informações sobre músicas, o sistema será capaz de se comunicar com a API pública do Spotify de modo a permitir que usuários logados possam acessar uma vasta lista de músicas para construir suas resenhas e playlists.
+- Acessar informações sobre músicas: o sistema será capaz de se comunicar com a API pública do Spotify de modo a permitir que usuários logados possam acessar uma vasta lista de músicas para construir suas resenhas e playlists.
 
 ----
 
