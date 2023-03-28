@@ -1,6 +1,6 @@
 # :checkered_flag: SongBox
 
-Um site focado na compartilhamento de opiniões sobre músicas, permitindo que usuários criem resenhas para músicas, criem suas próprias listas, avaliem-as, compartilhem com outros usuários e intererajam entre si por meio de comentários.
+Um site focado na compartilhamento de opiniões sobre músicas, permitindo que usuários criem resenhas para músicas, criem suas próprias listas eas avaliaem, mpartilhem com outros usuários e intererajam entre si por meio de comentários.
 
 ## :technologist: Membros da equipe
 
@@ -43,7 +43,7 @@ Um site focado na compartilhamento de opiniões sobre músicas, permitindo que u
 - Usuários logados poderão comentar ou "dar like" em playlists e resenhas de outros usuários
 - Usuários logados poderão editar seu perfil, adicionando um banner, foto de perfil, um nome de usuário personalizado e uma breve descrição sobre seus gostos musicais.
 - Visualizar estatíticas internas sobre músicas, como média das notas, quantidade de avaliações, dentre outros - Todos os usuários poderão acessar essa funcionalidade
-
+- Acessar informações sobre músicas, o sistema será capaz de se comunicar com a API pública do Spotify de modo a permitir que usuários logados possam acessar uma vasta lista de músicas para construir suas resenhas e playlists.
 
 ----
 
