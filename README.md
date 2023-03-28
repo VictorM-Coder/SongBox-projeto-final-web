@@ -1,6 +1,6 @@
 # :checkered_flag: SongBox
 
-Um site focado na compartilhamento de opiniões sobre músicas, permitindo que usuários criem suas própria listas, avaliem-as, compartilhem com outros usuários e intererajam entre si por meio de comentários.
+Um site focado na compartilhamento de opiniões sobre músicas, permitindo que usuários criem resenhas para músicas, criem suas próprias listas, avaliem-as, compartilhem com outros usuários e intererajam entre si por meio de comentários.
 
 ## :technologist: Membros da equipe
 
@@ -8,12 +8,12 @@ Um site focado na compartilhamento de opiniões sobre músicas, permitindo que u
 
 ## :people_holding_hands: Papéis ou tipos de usuário da aplicação
 
-- **Usuário logado**: Pode criar suas listas, avaliar músicas, visualizar e comentar listas de outros usuários.
-- **Usuário não logado**: Pode visualizar listas de outros usuários sem interajir.
+- **Usuário logado**: Pode criar suas listas, criar resenhas de músicas, personalizar seu perfil, visualizar e comentar listas de outros usuários.
+- **Usuário não logado**: Pode visualizar listas e resenhas de outros usuários sem interajir.
 
 ## :spiral_calendar: Entidades ou tabelas do sistema
 
-- Usuario
+- Perfil
   - descrição
   - nome de usuário
   - foto de perfil
@@ -24,15 +24,25 @@ Um site focado na compartilhamento de opiniões sobre músicas, permitindo que u
   - tags
   - autor
   - musicas
+  - likes
+  - comentários
 - Resenha
   - musica
+  - título
+  - tags
   - texto resenha
   - nota
+  - likes
+  - comentários
   
 
 ## :triangular_flag_on_post:	 Principais funcionalidades da aplicação
 
-Descreve ou liste brevemente as principais funcionalidades da aplicação que será desenvolvida. Destaque a funcionalidades que serão acessévies a todos os usuários e aquelas restriras a usuários logados.
+- Criar playlists de músicas vinculadas ao seu perfil, estas listas poderão ter títulos e descrições definidos pelo criador - O usuário precisará estar logado para criar uma lista, editar ou deletar, mas poderá visualizar sem estar logado;
+- Avaliar uma música: Um usuário poderá fazer uma resenha para uma música individual - O usuário precisá estar logado para criar, editar ou deletar uma resenha, mas poderá visualizar sem estar logado
+- Usuários logados poderão comentar ou "dar like" em playlists e resenhas de outros usuários
+- Usuários logados poderão editar seu perfil, adicionando um banner, foto de perfil, um nome de usuário personalizado e uma breve descrição sobre seus gostos musicais.
+- Visualizar estatíticas internas sobre músicas, como média das notas, quantidade de avaliações, dentre outros - Todos os usuários poderão acessar essa funcionalidade
 
 
 ----
