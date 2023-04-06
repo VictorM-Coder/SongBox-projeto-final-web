@@ -7,7 +7,8 @@ Um site focado na compartilhamento de opiniões sobre músicas, permitindo que u
 
 ## :people_holding_hands: Papéis ou tipos de usuário da aplicação
 
-- **Usuário logado**: Pode criar suas listas, criar resenhas de músicas, personalizar seu perfil, visualizar e comentar listas de outros usuários.
+- **Usuário comun**: Pode criar suas listas, criar resenhas de músicas, personalizar seu perfil, visualizar e comentar listas de outros usuários.
+- **Admin**: Pode adicionar, atualizar e remover músicas do catálogo do site.
 - **Usuário não logado**: Pode visualizar listas e resenhas de outros usuários sem interajir.
 
 ## :spiral_calendar: Entidades ou tabelas do sistema
@@ -37,13 +38,12 @@ Um site focado na compartilhamento de opiniões sobre músicas, permitindo que u
 
 ## :triangular_flag_on_post:	 Principais funcionalidades da aplicação
 
-- Criar playlists de músicas vinculadas ao seu perfil, estas listas poderão ter títulos e descrições definidos pelo criador - O usuário precisará estar logado para criar uma lista, editar ou deletar, mas poderá visualizar sem estar logado;
-- Avaliar uma música: Um usuário poderá fazer uma resenha para uma música individual - O usuário precisará estar logado para criar, editar ou deletar uma resenha, mas poderá visualizar sem estar logado
-- Usuários logados poderão comentar ou "dar like" em playlists e resenhas de outros usuários
-- Usuários logados poderão editar seu perfil, adicionando um banner, foto de perfil, um nome de usuário personalizado e uma breve descrição sobre seus gostos musicais.
+- Criar playlists de músicas vinculadas ao seu perfil, estas listas poderão ter títulos e descrições definidos pelo criador - O usuário comum poderá adicionar, editar e deletar playlists de seu perfil quando estiver logado, do contrário poderá somente visualizar conteúdos.
+- Avaliar uma música: Um usuário comum poderá fazer uma resenha para uma música individual - O usuário precisará estar logado para criar, editar ou deletar uma resenha, mas poderá visualizar sem estar logado.
+- Usuários comuns quando estiverem logados poderão comentar ou "dar like" em playlists e resenhas de outros usuários
+- Usuários comuns quando estiverem logados poderão editar seu perfil, adicionando um banner, foto de perfil, um nome de usuário personalizado e uma breve descrição sobre seus gostos musicais.
 - Visualizar estatíticas internas sobre músicas, como média das notas, quantidade de avaliações, dentre outros - Todos os usuários poderão acessar essa funcionalidade
-- Acessar informações sobre músicas: o sistema será capaz de se comunicar com a API pública do Spotify de modo a permitir que usuários logados possam acessar uma vasta lista de músicas para construir suas resenhas e playlists.
-
+- Admins poderão adicionar, remover e atualizar o catálogo de músicas do site.
 ----
 
 :warning::warning::warning: As informações a seguir devem ser enviadas juntamente com a versão final do projeto. :warning::warning::warning:
