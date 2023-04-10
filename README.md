@@ -13,27 +13,7 @@ Um site focado na compartilhamento de opiniões sobre músicas, permitindo que u
 
 ## :spiral_calendar: Entidades ou tabelas do sistema
 
-- Perfil
-  - descrição
-  - nome de usuário
-  - foto de perfil
-  - foto banner
-- Listas
-  - descrição
-  - título
-  - tags
-  - autor
-  - músicas
-  - likes
-  - comentários
-- Resenha
-  - música
-  - título
-  - tags
-  - texto resenha
-  - nota
-  - likes
-  - comentários
+![diagrama](./songbox.jpg)
   
 
 ## :triangular_flag_on_post:	 Principais funcionalidades da aplicação
