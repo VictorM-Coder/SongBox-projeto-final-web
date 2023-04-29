@@ -23,3 +23,21 @@ body {
     --p1-primary-color: #660F0F;
     --p0-primary-color: #e8e9fa;
 }
+
+.btn-song{
+    background: linear-gradient(360deg, #222BAE 0%, #3542C6 100%);
+    border-radius: 100px;
+    border: none;
+    padding: 12px 32px;
+
+    color: var(--t1-primary-color);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: .05em;
+    font-size: 1.2em;
+}
+
+.btn-song:hover{
+    background: linear-gradient(360deg, #1a2194 0%, #2935ae 100%);
+    color: #ececec;
+}
