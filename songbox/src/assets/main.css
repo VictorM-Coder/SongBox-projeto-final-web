@@ -1,0 +1,25 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--b1-primary-color);
+    color: var(--t1-primary-color);
+}
+
+:root {
+    --b-primary-color: #000000;
+    --b1-primary-color: #101012;
+    --b2-primary-color: #252429;
+    --b3-primary-color: #D5D5D8;
+
+    --t1-primary-color: white;
+
+    --p9-primary-color: #0D139C;
+    --p8-primary-color: #222bae;
+    --p7-primary-color: #2b36ba;
+    --p6-primary-color: #3542C6;
+    --p5-primary-color: #3a49d1;
+    --p4-primary-color: #5a66d9;
+    --p3-primary-color: #991717;
+    --p2-primary-color: #660F0F;
+    --p1-primary-color: #660F0F;
+    --p0-primary-color: #e8e9fa;
+}
