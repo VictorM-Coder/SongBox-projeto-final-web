@@ -47,11 +47,14 @@ body {
 .nav-link{
     font-size: 1em;
     letter-spacing: 0.05em;
-    text-align: center;
     color: var(--t1-primary-color);
     font-weight: 700;
 }
 
-.nav-link:hover{
+.icon-song {
+    font-size: 20px;
+}
+
+a {
     color: var(--p6-primary-color);
 }
