@@ -2,6 +2,8 @@ body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--b1-primary-color);
     color: var(--t1-primary-color);
+    height: 100%;
+    position: relative;
 }
 
 :root {
@@ -40,4 +42,16 @@ body {
 .btn-song:hover{
     background: linear-gradient(360deg, #1a2194 0%, #2935ae 100%);
     color: #ececec;
+}
+
+.nav-link{
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    text-align: center;
+    color: var(--t1-primary-color);
+    font-weight: 700;
+}
+
+.nav-link:hover{
+    color: var(--p6-primary-color);
 }
