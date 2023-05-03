@@ -11,6 +11,7 @@ body {
     --b1-primary-color: #101012;
     --b2-primary-color: #252429;
     --b3-primary-color: #D5D5D8;
+    --b-card-color: #222126;
 
     --t1-primary-color: white;
 
@@ -53,6 +54,10 @@ body {
 
 .icon-song {
     font-size: 20px;
+}
+
+.s-border-radius {
+    border-radius: 8px;
 }
 
 a {

@@ -43,7 +43,6 @@ export default {
   methods: {
     handleScroll() {
       this.isOnTop = window.scrollY > 100;
-      console.log(this.isOnTop)
     }
   },
 

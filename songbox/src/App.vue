@@ -3,6 +3,7 @@
 import MyHeader from "@/components/header/MyHeader.vue";
 import StartNow from "@/components/home/StartNow.vue";
 import MyFooter from "@/components/footer/MyFooter.vue";
+import EmAlta from "@/components/home/EmAlta.vue";
 </script>
 
 <template>
@@ -10,6 +11,7 @@ import MyFooter from "@/components/footer/MyFooter.vue";
     <MyHeader></MyHeader>
     <start-now></start-now>
   </div>
+  <em-alta></em-alta>
   <MyFooter></MyFooter>
 </template>
 
