@@ -1,18 +1,16 @@
 <template>
-  <div class="d-flex">
-    <div class="d-block card-music s-border-radius">
-      <div class="img-card">
-        <img class="img-fluid s-border-radius"  :src="music.imgLink" alt="capa do álbum">
-      </div>
-      <div class="d-flex justify-content-between text-card">
-        <p>{{ music.title }}</p>
-        <span>
+  <div class="d-block card-music s-border-radius">
+    <div class="img-card">
+      <img class="img-fluid s-border-radius"  :src="music.imgLink" alt="capa do álbum">
+    </div>
+    <div class="d-flex justify-content-between text-card">
+      <p>{{ music.title }}</p>
+      <span>
           {{ music.grade }}
           <i class="bi bi-star-fill"></i>
         </span>
-      </div>
-      <p class="artist-text">{{ music.artist.name }}</p>
     </div>
+    <p class="artist-text">{{ music.artist.name }}</p>
   </div>
 </template>
 
@@ -28,7 +26,7 @@ export default {
 </script>
 <style scoped>
 .img-card {
-  width: 180px;
+  width: 200px;
   filter: drop-shadow(0px 0px 12px rgba(16, 16, 18, 0.5));
 }
 

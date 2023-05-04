@@ -60,6 +60,22 @@ body {
     border-radius: 8px;
 }
 
+.btn-show {
+    background: none;
+    border: none;
+    font-size: 1em;
+    font-weight: 500;
+    color: var(--p0-primary-color);
+}
+
+.btn-show:hover{
+    text-decoration: underline;
+}
+
+.mb-20{
+    margin-bottom: 20px;
+}
+
 a {
     color: var(--p6-primary-color);
 }

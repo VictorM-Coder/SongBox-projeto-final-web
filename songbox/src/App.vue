@@ -7,8 +7,8 @@ import EmAlta from "@/components/home/EmAlta.vue";
 </script>
 
 <template>
+  <MyHeader></MyHeader>
   <div class="bg-radial">
-    <MyHeader></MyHeader>
     <start-now></start-now>
   </div>
   <em-alta></em-alta>

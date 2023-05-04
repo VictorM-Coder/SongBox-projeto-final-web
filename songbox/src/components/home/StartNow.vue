@@ -16,7 +16,7 @@
 
 <style scoped>
 main {
-  margin-top: 8em;
+  padding: 12em 0 4em 0;
 }
 
 

@@ -1,6 +1,17 @@
 <template>
-  <div>
-    <music-card :music="music"></music-card>
+  <div class="container">
+    <div class="row mb-20">
+      <div class="d-flex justify-content-between align-items-end">
+        <h2>Em Alta</h2>
+        <button class="btn-show">Mostrar tudo</button>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between flex-wrap">
+      <music-card :music="music"></music-card>
+      <music-card :music="music"></music-card>
+      <music-card :music="music"></music-card>
+      <music-card :music="music"></music-card>
+    </div>
   </div>
 </template>
 
@@ -19,3 +30,11 @@ export default {
   },
 }
 </script>
+
+
+<style scoped>
+
+h2 {
+  margin: 0;
+}
+</style>

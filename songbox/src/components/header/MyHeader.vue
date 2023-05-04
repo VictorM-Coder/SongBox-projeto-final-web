@@ -1,5 +1,5 @@
 <template>
-  <div class="sticky-top" :class="{'bg-black': isOnTop}">
+  <div class="position-fixed container-fluid z-index-always-top" :class="{'bg-black': isOnTop}">
     <header class="container">
       <div class="d-flex justify-content-between align-content-center">
         <div class="col-3 d-flex align-items-center">
@@ -36,7 +36,7 @@ export default {
 
   data() {
     return {
-      isOnTop: true,
+      isOnTop: false,
     };
   },
 
@@ -60,7 +60,9 @@ export default {
 header {
   padding: 16px 0;
 }
-
+.z-index-always-top{
+  z-index: 1020;
+}
 .logo:hover{
   cursor: pointer;
 }
