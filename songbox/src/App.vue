@@ -7,16 +7,5 @@ import EmAlta from "@/components/home/EmAlta.vue";
 </script>
 
 <template>
-  <MyHeader></MyHeader>
-  <div class="bg-radial">
-    <start-now></start-now>
-  </div>
-  <em-alta></em-alta>
-  <MyFooter></MyFooter>
+  <router-view></router-view>
 </template>
-
-<style scoped>
-.bg-radial {
-  background: radial-gradient(50% 50% at 50% 50%, rgb(198 201 242 / 12%) 0%, rgba(16, 16, 18, 0) 100%);
-}
-</style>

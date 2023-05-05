@@ -76,6 +76,10 @@ body {
     margin-bottom: 20px;
 }
 
+.bg-radial {
+    background: radial-gradient(50% 50% at 50% 50%, rgb(198 201 242 / 12%) 0%, rgba(16, 16, 18, 0) 100%);
+}
+
 a {
     color: var(--p6-primary-color);
 }
