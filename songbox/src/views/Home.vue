@@ -1,10 +1,8 @@
 <template>
-  <MyHeader></MyHeader>
   <div class="bg-radial">
     <start-now></start-now>
   </div>
   <em-alta></em-alta>
-  <MyFooter></MyFooter>
 </template>
 
 <script setup lang="ts">

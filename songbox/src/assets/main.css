@@ -83,3 +83,25 @@ body {
 a {
     color: var(--p6-primary-color);
 }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+#app{
+    min-height: 100%;
+    position: relative;
+}
+
+.padding-to-footer {
+    padding-bottom: 32em;
+}
+
+footer{
+    background: #ffab62;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}

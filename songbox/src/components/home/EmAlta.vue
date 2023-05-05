@@ -6,7 +6,7 @@
         <button class="btn-show">Mostrar tudo</button>
       </div>
     </div>
-    <div class="d-flex justify-content-between flex-wrap">
+    <div class="d-flex justify-content-between flex-wrap padding-to-footer">
       <music-card :music="music"></music-card>
       <music-card :music="music"></music-card>
       <music-card :music="music"></music-card>
