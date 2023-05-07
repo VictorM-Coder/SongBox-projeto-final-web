@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "commentaries",
+  "info": {
+    "singularName": "commentary",
+    "pluralName": "commentaries",
+    "displayName": "Commentary"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "text": {
+      "type": "text"
+    },
+    "author": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "review": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::review.review",
+      "inversedBy": "commentaries"
+    },
+    "playlist": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::playlist.playlist",
+      "inversedBy": "commentaries"
+    }
+  }
+}

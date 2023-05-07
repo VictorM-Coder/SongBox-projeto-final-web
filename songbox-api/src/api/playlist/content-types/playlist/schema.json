@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "playlists",
+  "info": {
+    "singularName": "playlist",
+    "pluralName": "playlists",
+    "displayName": "Playlist",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "minLength": 1
+    },
+    "review": {
+      "type": "richtext",
+      "required": true,
+      "minLength": 1
+    },
+    "author": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "music": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::music.music",
+      "inversedBy": "playlists"
+    },
+    "likes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::like.like",
+      "mappedBy": "playlist"
+    },
+    "commentaries": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::commentary.commentary",
+      "mappedBy": "playlist"
+    },
+    "PostDate": {
+      "type": "date",
+      "required": true
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tag.tag",
+      "mappedBy": "playlist"
+    }
+  }
+}
