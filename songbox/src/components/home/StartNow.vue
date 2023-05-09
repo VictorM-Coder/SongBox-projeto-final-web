@@ -15,11 +15,6 @@
 </script>
 
 <style scoped>
-main {
-  padding: 12em 0 4em 0;
-}
-
-
 h1{
   text-align: center;
   font-weight: 700;

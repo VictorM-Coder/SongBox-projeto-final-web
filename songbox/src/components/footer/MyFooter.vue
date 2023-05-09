@@ -1,7 +1,7 @@
 <template>
   <footer class="container-fluid footer navbar-fixed-bottom">
-    <div class="container">
-      <div class="row">
+    <div class="container g-0">
+      <div class="row g-0">
         <div class="col-4">
           <i class="logo">
             <img src="@/assets/logo-songbox.svg">

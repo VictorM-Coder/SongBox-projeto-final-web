@@ -1,7 +1,7 @@
 <template>
   <div class="position-fixed container-fluid z-index-always-top" :class="{'bg-black': isOnTop}">
     <header class="container">
-      <div class="d-flex justify-content-between align-content-center">
+      <div class="d-flex row justify-content-between align-content-center">
         <div class="col-3 d-flex align-items-center">
           <i class="logo">
             <img src="@/assets/logo-songbox.svg">
@@ -48,9 +48,6 @@ export default {
 
   mounted() {
     window.addEventListener('scroll', this.handleScroll);
-  },
-  beforeDestroy() {
-    window.removeEventListener('scroll', this.handleScroll);
   },
 }
 </script>

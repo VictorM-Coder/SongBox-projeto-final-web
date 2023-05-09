@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container g-0">
     <div class="row mb-20">
       <div class="d-flex justify-content-between align-items-end">
         <h2>Em Alta</h2>

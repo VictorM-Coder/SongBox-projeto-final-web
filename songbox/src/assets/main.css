@@ -6,6 +6,10 @@ body {
     position: relative;
 }
 
+main {
+    padding: 12em 0 4em 0;
+}
+
 :root {
     --b-primary-color: #000000;
     --b1-primary-color: #101012;
@@ -40,9 +44,21 @@ body {
     font-size: 1.2em;
 }
 
-.btn-song:hover{
+.btn-song:hover, .btn-crud:hover{
     background: linear-gradient(360deg, #1a2194 0%, #2935ae 100%);
     color: #ececec;
+}
+
+.btn-crud {
+    background: linear-gradient(360deg, #222BAE 0%, #3542C6 100%);
+    border-radius: 100px;
+    border: none;
+    padding: 12px 32px;
+
+    color: var(--t1-primary-color);
+    font-weight: 500;
+    letter-spacing: .05em;
+    font-size: 1em;
 }
 
 .nav-link{
@@ -80,6 +96,10 @@ body {
     background: radial-gradient(50% 50% at 50% 50%, rgb(198 201 242 / 12%) 0%, rgba(16, 16, 18, 0) 100%);
 }
 
+.shadow-default {
+    box-shadow: rgba(0, 0, 0, 0.30) 0 0 12px;
+}
+
 a {
     color: var(--p6-primary-color);
 }
@@ -96,6 +116,14 @@ html, body {
 
 .padding-to-footer {
     padding-bottom: 32em;
+}
+
+.bg-s1 {
+    background-color: var(--b2-primary-color);
+}
+
+.bg-s0 {
+    background-color: var(--b1-primary-color);
 }
 
 footer{
