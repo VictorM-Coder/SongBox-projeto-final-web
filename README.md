@@ -13,7 +13,7 @@ Um site focado na compartilhamento de opiniões sobre músicas, permitindo que u
 
 ## :spiral_calendar: Entidades ou tabelas do sistema
 
-![diagrama](./songbox.jpg)
+![diagrama](./songbox.png)
   
 
 ## :triangular_flag_on_post:	 Principais funcionalidades da aplicação
