@@ -19,6 +19,7 @@ import {Music} from "@/model/Music";
 
 export default {
   name: 'MusicCard',
+  components: {},
   props: {
     music:Music
   },

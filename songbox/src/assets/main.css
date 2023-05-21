@@ -49,16 +49,26 @@ main {
     color: #ececec;
 }
 
-.btn-crud {
-    background: linear-gradient(360deg, #222BAE 0%, #3542C6 100%);
-    border-radius: 100px;
-    border: none;
+
+.btn-crud, .btn-crud-secondary {
     padding: 12px 32px;
 
     color: var(--t1-primary-color);
     font-weight: 500;
     letter-spacing: .05em;
     font-size: 1em;
+}
+.btn-crud {
+    background: linear-gradient(360deg, #222BAE 0%, #3542C6 100%);
+    border-radius: 100px;
+    border: none;
+}
+
+.btn-crud-secondary {
+    background: transparent;
+    border-radius: 100px;
+    border: white solid 2px;
+    box-sizing: content-box;
 }
 
 .nav-link{
@@ -109,6 +119,7 @@ html, body {
     padding: 0;
     height: 100%;
 }
+
 #app{
     min-height: 100%;
     position: relative;
