@@ -61,7 +61,6 @@ a {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   text-decoration: none;
-  color: var(--p0-primary-color);
 }
 
 p {

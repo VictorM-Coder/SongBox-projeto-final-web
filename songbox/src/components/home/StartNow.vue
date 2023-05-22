@@ -1,5 +1,5 @@
 <template>
-  <main class="container">
+  <main class="container header-margin">
     <h1><strong>Avalie</strong> suas músicas favoritas, <strong>crie playlists</strong> e <strong>compartilhe</strong> sua opinião com todos </h1>
     <div class="d-flex justify-content-center">
       <button class="btn-song">comece agora</button>
