@@ -8,14 +8,22 @@
     <div class="login-group">
       <h2>Bem vindo de volta</h2>
       <form>
-        <div class="mb-3">
-          <label for="recipient-name" class="col-form-label">LOGIN:</label>
-          <input v-model="nameValue" type="text" class="form-control" id="recipient-name">
-        </div>
-        <div class="mb-3">
-          <label for="password" class="col-form-label">SENHA:</label>
-          <input v-model="passwordValue" type="password" class="form-control" id="password">
-        </div>
+        <form id="form-login" novalidate class="needs-validation">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">LOGIN:</label>
+            <input required v-model="nameValue" type="text" class="form-control" id="recipient-name">
+            <div class="invalid-feedback">
+              Nome inválido.
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="col-form-label">SENHA:</label>
+            <input required v-model="passwordValue" type="password" class="form-control" id="password">
+            <div class="invalid-feedback">
+              Senha inválida.
+            </div>
+          </div>
+        </form>
         <div class="mb-4 d-flex justify-content-between">
           <div class="form-check">
             <input @click="showPassword" class="form-check-input" type="checkbox" value="" id="checkShowPassword">
@@ -27,7 +35,7 @@
         </div>
         <div class="d-flex justify-content-between">
           <button type="button" class="btn-crud-secondary">Criar conta</button>
-          <button type="submit" @click="login" class="btn-crud">entrar</button>
+          <button form="form-login" type="submit" @click="login" class="btn-crud">entrar</button>
         </div>
       </form>
     </div>
@@ -40,9 +48,10 @@ import {ref} from "vue";
 
 const nameValue = ref('')
 const passwordValue = ref('')
+const errorField = ref<HTMLDivElement>()
 
 function showPassword(){
-  const password = document.querySelector('#password');
+  const password = document.querySelector('#password')
   let type = '';
   if (password) {
     type = password
@@ -53,9 +62,24 @@ function showPassword(){
   password?.setAttribute('type', type);
 }
 async function login(event: Event) {
-  event.preventDefault();
-  const user = await AuthService.signIn({identifier: nameValue.value, password: passwordValue.value})
+  let forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event: Event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+
+          form.classList.add('was-validated')
+        }, false)
+      })
+  // event.preventDefault();
+  // const user = await AuthService.signIn({identifier: nameValue.value, password: passwordValue.value})
 }
+
 </script>
 
 <style scoped>
