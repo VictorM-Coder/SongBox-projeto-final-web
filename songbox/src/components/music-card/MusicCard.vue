@@ -27,7 +27,6 @@ export default {
 </script>
 <style scoped>
 .img-card {
-  width: 200px;
   filter: drop-shadow(0px 0px 12px rgba(16, 16, 18, 0.5));
 }
 

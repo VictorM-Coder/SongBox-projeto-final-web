@@ -6,28 +6,40 @@
         <button class="btn-show">Mostrar tudo</button>
       </div>
     </div>
-    <div class="d-flex justify-content-between flex-wrap padding-to-footer">
-      <music-card :music="music"></music-card>
-      <music-card :music="music"></music-card>
-      <music-card :music="music"></music-card>
-      <music-card :music="music"></music-card>
+    <div class="container-fluid g-0 padding-to-footer">
+      <div class="row">
+<!--        <div class="col-6 col-md-4 col-lg-3 mb-4 mb-lg-0">-->
+<!--          <music-card :music="music"></music-card>-->
+<!--        </div>-->
+<!--        <div class="col-6 col-md-4 col-lg-3 mb-4 mb-lg-0">-->
+<!--          <music-card :music="music"></music-card>-->
+<!--        </div>-->
+<!--        <div class="col-6 col-md-4 col-lg-3 mb-4 mb-lg-0">-->
+<!--          <music-card :music="music"></music-card>-->
+<!--        </div>-->
+<!--        <div class="col-6 col-md-4 col-lg-3 mb-4 mb-lg-0">-->
+<!--          <music-card :music="music"></music-card>-->
+<!--        </div>-->
+      </div>
     </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import MusicCard from "@/components/music-card/MusicCard.vue";
-import {Music} from "@/model/Music";
+import type {Music} from "@/model/Music";
 import {Artist} from "@/model/Artist";
+import {MusicService} from "@/services/music/MusicService";
 
 export default {
   name: "EmAlta",
-  components: {MusicCard},
-  data() {
-    return {
-      music: new Music(1, "Thunder", new Artist(1, "Imagine Dragons"), 2, 4.5, new Date(), "lirics", "src/assets/capa.jpg")
-    }
+  // components: { MusicCard },
+  props: {
+    musics: [],
   },
+  async mounted() {
+    await MusicService.get().then(value => console.log(value)).catch(reason => console.log(reason))
+  }
 }
 </script>
 

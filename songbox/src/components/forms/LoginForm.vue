@@ -10,11 +10,11 @@
       <form>
         <div class="mb-3">
           <label for="recipient-name" class="col-form-label">LOGIN:</label>
-          <input type="text" class="form-control" id="recipient-name">
+          <input v-model="nameValue" type="text" class="form-control" id="recipient-name">
         </div>
         <div class="mb-3">
           <label for="password" class="col-form-label">SENHA:</label>
-          <input type="password" class="form-control" id="password">
+          <input v-model="passwordValue" type="password" class="form-control" id="password">
         </div>
         <div class="mb-4 d-flex justify-content-between">
           <div class="form-check">
@@ -27,28 +27,34 @@
         </div>
         <div class="d-flex justify-content-between">
           <button type="button" class="btn-crud-secondary">Criar conta</button>
-          <button type="button" class="btn-crud">entrar</button>
+          <button type="submit" @click="login" class="btn-crud">entrar</button>
         </div>
       </form>
     </div>
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import {AuthService} from "@/services/auth/AuthService";
+import {ref} from "vue";
 
-export default {
-  name: 'login-form',
-  methods: {
-    showPassword(){
-      console.log("pass")
-      const password = document.querySelector('#password');
-      const type = password
-          .getAttribute('type') === 'password' ?
-          'text' : 'password';
-      password.setAttribute('type', type);
-    }
+const nameValue = ref('')
+const passwordValue = ref('')
+
+function showPassword(){
+  const password = document.querySelector('#password');
+  let type = '';
+  if (password) {
+    type = password
+        .getAttribute('type') === 'password' ?
+        'text' : 'password';
   }
+
+  password?.setAttribute('type', type);
+}
+async function login(event: Event) {
+  event.preventDefault();
+  const user = await AuthService.signIn({identifier: nameValue.value, password: passwordValue.value})
 }
 </script>
 
