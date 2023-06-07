@@ -6,5 +6,9 @@ import 'bootstrap'
 import "bootstrap-icons/font/bootstrap-icons.css";
 import './assets/main.css'
 import router from './router';
+import { createPinia } from "pinia";
 
-createApp(App).use(router).mount('#app');
+createApp(App)
+    .use(createPinia())
+    .use(router)
+    .mount('#app');

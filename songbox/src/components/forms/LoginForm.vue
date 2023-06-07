@@ -8,7 +8,7 @@
     <div class="login-group">
       <h2>Bem vindo de volta</h2>
       <form>
-        <form id="form-login" novalidate class="needs-validation">
+        <form id="form-login" novalidate ref="formLogin">
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">LOGIN:</label>
             <input required v-model="nameValue" type="text" class="form-control" id="recipient-name">
@@ -49,6 +49,7 @@ import {ref} from "vue";
 const nameValue = ref('')
 const passwordValue = ref('')
 const errorField = ref<HTMLDivElement>()
+const formLogin = ref<HTMLFormElement>()
 
 function showPassword(){
   const password = document.querySelector('#password')
@@ -62,22 +63,14 @@ function showPassword(){
   password?.setAttribute('type', type);
 }
 async function login(event: Event) {
-  let forms = document.querySelectorAll('.needs-validation')
+  event.preventDefault()
+  event.stopPropagation()
 
-  // Loop over them and prevent submission
-  Array.prototype.slice.call(forms)
-      .forEach(function (form) {
-        form.addEventListener('submit', function (event: Event) {
-          if (!form.checkValidity()) {
-            event.preventDefault()
-            event.stopPropagation()
-          }
-
-          form.classList.add('was-validated')
-        }, false)
-      })
-  // event.preventDefault();
-  // const user = await AuthService.signIn({identifier: nameValue.value, password: passwordValue.value})
+  if (formLogin.value?.checkValidity()) {
+    const user = await AuthService.signIn({identifier: nameValue.value, password: passwordValue.value})
+  }else {
+    formLogin.value?.classList.add('was-validated')
+  }
 }
 
 </script>
