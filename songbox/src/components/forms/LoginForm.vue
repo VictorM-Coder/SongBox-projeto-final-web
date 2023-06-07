@@ -45,6 +45,8 @@
 <script setup lang="ts">
 import {AuthService} from "@/services/auth/AuthService";
 import {ref} from "vue";
+import {useRouter} from "vue-router";
+import router from "@/router";
 
 const nameValue = ref('')
 const passwordValue = ref('')
@@ -68,6 +70,7 @@ async function login(event: Event) {
 
   if (formLogin.value?.checkValidity()) {
     const user = await AuthService.signIn({identifier: nameValue.value, password: passwordValue.value})
+    await router.push('/')
   }else {
     formLogin.value?.classList.add('was-validated')
   }
