@@ -4,7 +4,7 @@
       <div class="d-flex row justify-content-between align-content-center">
         <div class="col-3 d-flex align-items-center">
           <i class="logo">
-            <img src="@/assets/logo-songbox.svg">
+            <img src="@/assets/logo-songbox.svg" alt="logo  songbox">
           </i>
         </div>
 
@@ -23,33 +23,31 @@
         </nav>
 
         <div class="col-1 col-lg-3 d-flex justify-content-end align-items-center">
-          perfil
+          <span>
+            <i class="bi bi-person"></i>
+          </span>
         </div>
       </div>
     </header>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'MyHeader',
+<script lang="ts" setup>
+import {onBeforeUnmount, onMounted, ref} from "vue";
 
-  data() {
-    return {
-      isOnTop: false,
-    };
-  },
+const isOnTop = ref(false)
 
-  methods: {
-    handleScroll() {
-      this.isOnTop = window.scrollY > 100;
-    }
-  },
-
-  mounted() {
-    window.addEventListener('scroll', this.handleScroll);
-  },
+function handleScroll() {
+  isOnTop.value = window.scrollY > 100;
 }
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll);
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', handleScroll);
+})
 </script>
 
 <style scoped>
