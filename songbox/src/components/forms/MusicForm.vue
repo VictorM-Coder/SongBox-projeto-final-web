@@ -16,7 +16,8 @@
             <label for="artistInput" class="form-label">Artista</label>
             <select v-model="musicSelected.artist" class="form-select" id="artistInput" required>
               <option selected disabled value="">Selecione...</option>
-              <option>Artista teste</option>
+              <option v-for="artist in artists" :value="artist.id" :key="artist.id">{{artist.name}}</option>
+
             </select>
             <div class="invalid-feedback">
               Selecione um artista válido.
@@ -82,14 +83,19 @@
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue';
+import {onMounted, ref} from 'vue';
 import {Music} from "@/model/Music";
+import {Artist} from "@/model/Artist";
+import {ArtistService} from "@/services/artist/ArtistService";
 
 const imageUrl = ref<string | null>(null);
-const musics = ref<Music[]>()
 const musicSelected = ref<Music>({} as Music)
 const musicForm = ref<HTMLFormElement>()
+const artists = ref<Artist[]>()
 
+onMounted(async () => {
+  artists.value = await ArtistService.get()
+})
 
 async function addMusic(event: SubmitEvent) {
   event.preventDefault()
