@@ -99,12 +99,14 @@ onMounted(async () => {
   artists.value = await ArtistService.get()
 })
 
+const emits = defineEmits(['addMusic'])
+
 async function addMusic(event: SubmitEvent) {
   event.preventDefault()
   event.stopPropagation()
   if (musicForm.value?.checkValidity()) {
     if (cover.value){
-      await MusicService.post(musicSelected.value, cover.value)
+      emits('addMusic', musicSelected.value, cover.value)
     } else {
       window.alert("selecione uma imagem")
     }

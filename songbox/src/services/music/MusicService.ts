@@ -28,9 +28,7 @@ export const MusicService = {
                 Authorization: `Bearer ${useUserStore().user.jwt}`
             }
         })
-        console.log("service: " + value.data)
         return value.data;
-
     },
 
     async put(music: Music, id: number) {

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1 class="mb-4">Adicionar música</h1>
-    <MusicForm></MusicForm>
+    <MusicForm @add-music="addMusic"></MusicForm>
 
     <div class="container mt-5">
       <h1>Músicas</h1>
@@ -54,6 +54,10 @@ onMounted(async () => {
 
 async function removeMusic(id: number) {
   await MusicService.delete(id)
+}
+
+async function addMusic(music: Music, cover: File) {
+  await MusicService.post(music, cover)
 }
 function updateMusic(music: Music, id: number) {
 
