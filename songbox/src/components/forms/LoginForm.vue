@@ -45,12 +45,10 @@
 <script setup lang="ts">
 import {AuthService} from "@/services/auth/AuthService";
 import {ref} from "vue";
-import {useRouter} from "vue-router";
 import router from "@/router";
 
 const nameValue = ref('')
 const passwordValue = ref('')
-const errorField = ref<HTMLDivElement>()
 const formLogin = ref<HTMLFormElement>()
 
 function showPassword(){
