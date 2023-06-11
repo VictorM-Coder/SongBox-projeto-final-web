@@ -26,7 +26,7 @@
           <div class="col-md-4 mt-2">
             <label for="releaseInput" class="form-label">Lançamento</label>
             <div class="input-group has-validation">
-              <input v-model="musicSelected.release" type="date" class="form-control" id="releaseInput" required>
+              <input v-model="musicSelected.releaseYear" type="number" min="1900" max="2023" class="form-control" id="releaseInput" required>
               <div class="invalid-feedback">
                 Campo obrigatório.
               </div>
@@ -34,14 +34,14 @@
           </div>
           <div class="col-6 col-md-3 col-lg-2 mt-2">
             <label for="minuteInput" class="form-label">Minutos</label>
-            <input v-model="musicSelected.minutes" type="number" min="0" max="60" class="form-control" id="minuteInput" required>
+            <input v-model="musicSelected.minutesDuration" type="number" min="0" max="60" class="form-control" id="minuteInput" required>
             <div class="invalid-feedback">
               Campo obrigatório.
             </div>
           </div>
           <div class="col-6 col-md-3 col-lg-2 mt-2">
             <label for="secondsInput" class="form-label">Segundos</label>
-            <input v-model="musicSelected.seconds" type="number" min="0" max="59" class="form-control" id="secondsInput" required>
+            <input v-model="musicSelected.secondsDuration" type="number" min="0" max="59" class="form-control" id="secondsInput" required>
             <div class="invalid-feedback">
               Campo obrigatório.
             </div>
@@ -87,8 +87,10 @@ import {onMounted, ref} from 'vue';
 import {Music} from "@/model/Music";
 import {Artist} from "@/model/Artist";
 import {ArtistService} from "@/services/artist/ArtistService";
+import {MusicService} from "@/services/music/MusicService";
 
 const imageUrl = ref<string | null>(null);
+const cover = ref<File>()
 const musicSelected = ref<Music>({} as Music)
 const musicForm = ref<HTMLFormElement>()
 const artists = ref<Artist[]>()
@@ -101,8 +103,11 @@ async function addMusic(event: SubmitEvent) {
   event.preventDefault()
   event.stopPropagation()
   if (musicForm.value?.checkValidity()) {
-    //const user = await AuthService.signIn()
-    console.log(musicSelected.value)
+    if (cover.value){
+      await MusicService.post(musicSelected.value, cover.value)
+    } else {
+      window.alert("selecione uma imagem")
+    }
   } else {
     musicForm.value?.classList.add('was-validated')
   }
@@ -110,16 +115,16 @@ async function addMusic(event: SubmitEvent) {
 
 const handleImageUpload = (event: Event) => {
   const target = event.target as HTMLInputElement;
-  const file = target.files?.[0];
+  cover.value = target.files?.[0];
 
-  if (file) {
+  if (cover.value) {
     const reader = new FileReader();
 
     reader.onload = () => {
       imageUrl.value = reader.result as string;
     };
 
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(cover.value);
   }
 };
 </script>

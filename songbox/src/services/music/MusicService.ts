@@ -3,6 +3,7 @@ import {api} from "@/libs/axios";
 import type {Music} from "@/model/Music";
 import type {StrapiResponse} from "@/services/music/response/MusicResponse";
 import {useUserStore} from "@/stores/userStore";
+import {Artist} from "@/model/Artist";
 
 const urlMusic = '/api/musics'
 export const MusicService = {
@@ -15,9 +16,21 @@ export const MusicService = {
         return value.data.data;
     },
 
-    async post(music: Music) {
-        const value = await api.private.post<Music>(urlMusic, music)
+    async post(music: Music, coverFile: File) {
+        const { cover, ...musicData } = music
+
+        const body = new FormData()
+        body.append('data', JSON.stringify(musicData))
+        body.append('files.cover', coverFile)
+
+        const value = await api.private.post<Music>(urlMusic, body, {
+            headers: {
+                Authorization: `Bearer ${useUserStore().user.jwt}`
+            }
+        })
+        console.log("service: " + value.data)
         return value.data;
+
     },
 
     async put(music: Music, id: number) {

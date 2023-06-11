@@ -14,7 +14,7 @@
             <span class="music-data d-flex align-items-center">
               <span>{{ music.artist.name }}</span>
               <i class="bi bi-circle-fill divider"></i>
-              <span> {{ music.release.getFullYear() }}</span>
+              <span> {{ music.releaseYear.getFullYear() }}</span>
               <i class="bi bi-circle-fill divider"></i>
               <span> {{ music.duration }}</span>
             </span>
@@ -53,7 +53,7 @@
                   <span class="music-data d-flex align-items-center">
                     <span>{{ music.artist.name }}</span>
                     <i class="bi bi-circle-fill divider"></i>
-                    <span> {{ music.release.getFullYear() }}</span>
+                    <span> {{ music.releaseYear.getFullYear() }}</span>
                     <i class="bi bi-circle-fill divider"></i>
                     <span class="lead"> {{ music.duration }}</span>
                   </span>
