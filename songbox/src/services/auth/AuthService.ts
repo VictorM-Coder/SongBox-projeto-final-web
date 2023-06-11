@@ -5,8 +5,8 @@ import {useUserStore} from "@/stores/userStore";
 
 export const AuthService = {
     async signIn(user: User){
-        const response = await api.public.post('/auth/local', user);
-        const res = await api.public.get('users/me', {
+        const response = await api.public.post('/api/auth/local', user);
+        const res = await api.public.get('api/users/me', {
             params: {
                 populate: ['role']
             },
@@ -20,6 +20,8 @@ export const AuthService = {
             role: res.data.role.type,
             username: response.data.user.username
         }
+
+        localStorage.setItem('authToken', response.data.jwt)
 
         const userStore = useUserStore()
         userStore.user = userResponse

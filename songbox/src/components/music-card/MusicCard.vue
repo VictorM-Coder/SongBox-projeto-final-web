@@ -1,7 +1,7 @@
 <template>
   <div class="d-block card-music s-border-radius">
     <div class="img-card">
-      <img class="img-fluid s-border-radius"  :src="music.imgLink" alt="capa do álbum">
+      <img class="img-fluid s-border-radius"  :src="music.cover.url" alt="capa do álbum">
     </div>
     <div class="d-flex justify-content-between text-card">
       <p>{{ music.title }}</p>

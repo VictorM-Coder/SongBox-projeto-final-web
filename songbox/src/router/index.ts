@@ -24,7 +24,8 @@ const routes: RouteRecordRaw[] = [
     {
         path: '/admin',
         name: 'admin',
-        component: Admin
+        component: Admin,
+        meta: { permissions: ['admin'] }
     }
 ];
 

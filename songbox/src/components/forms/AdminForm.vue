@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <h1 class="mb-4">Adicionar música</h1>
     <form class="row g-3 needs-validation" novalidate>
       <div class="col-12 col-md-8">
         <div class="container g-0">
@@ -32,14 +33,14 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-2 mt-2">
+            <div class="col-6 col-md-3 col-lg-2 mt-2">
               <label for="minuteInput" class="form-label">Minutos</label>
               <input type="number" min="0" max="60" class="form-control" id="minuteInput" required>
               <div class="invalid-feedback">
                 Campo obrigatório.
               </div>
             </div>
-            <div class="col-md-2 mt-2">
+            <div class="col-6 col-md-3 col-lg-2 mt-2">
               <label for="secondsInput" class="form-label">Segundos</label>
               <input type="number" min="0" max="59" class="form-control" id="secondsInput" required>
               <div class="invalid-feedback">
@@ -80,13 +81,66 @@
         <button class="btn btn-crud" type="submit">Submit form</button>
       </div>
     </form>
+
+    <div class="container mt-5">
+      <h1>Músicas</h1>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Capa</th>
+          <th>Nome</th>
+          <th>Artista</th>
+          <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="music in musics" :key="music.id">
+          <td>
+            <img class="img-fluid" :src="useUploadFile(music.cover.url)">
+          </td>
+          <td>{{ music.title }}</td>
+          <td>{{ music.artist.name }}</td>
+          <td>
+            <div class="d-flex justify-content-around">
+              <button @click="removeMusic(music.id)" class="btn btn-danger d-flex justify-content-center align-items-center">
+                <i class="bi bi-x-circle"></i>
+              </button>
+              <button @click="updateMusic(music.id, music)" class="btn btn-primary d-flex justify-content-center align-items-center">
+                <i class="bi bi-pencil-square"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import {onMounted, ref} from 'vue';
+import {Music} from "@/model/Music";
+import {MusicService} from "@/services/music/MusicService";
+import {useUploadFile} from "@/utils/useUploadURL";
 
 const imageUrl = ref<string | null>(null);
+const musics = ref<Music[]>()
+
+onMounted(async () => {
+  musics.value = await MusicService.get();
+})
+
+async function removeMusic(id: number) {
+  await MusicService.delete(id)
+}
+
+function addMusic(music: Music) {
+
+}
+
+function updateMusic(music: Music, id: number) {
+
+}
 
 const handleImageUpload = (event: Event) => {
   const target = event.target as HTMLInputElement;
@@ -115,6 +169,9 @@ const handleImageUpload = (event: Event) => {
   height: 100%;
 }
 
+td img {
+  max-width: 200px;
+}
 .upload-icon {
   font-size: 6em;
   border: solid white 1px;

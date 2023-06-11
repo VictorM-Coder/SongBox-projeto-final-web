@@ -70,7 +70,7 @@ async function login(event: Event) {
 
   if (formLogin.value?.checkValidity()) {
     const user = await AuthService.signIn({identifier: nameValue.value, password: passwordValue.value})
-    await router.push('/')
+    await router.push('/admin')
   }else {
     formLogin.value?.classList.add('was-validated')
   }
