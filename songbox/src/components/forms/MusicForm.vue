@@ -14,8 +14,10 @@
           </div>
           <div class="col-md-4 mt-2">
             <label for="artistInput" class="form-label">Artista</label>
-            <select v-model="musicSelected.artist" class="form-select" id="artistInput" required>
-              <option selected disabled value="">Selecione...</option>
+            <select :value="(musicSelected.artist)? musicSelected.artist.id: 0"
+                    @change="changeArtist"
+                    class="form-select" id="artistInput" required>
+              <option selected disabled value="0">Selecione...</option>
               <option v-for="artist in artists" :value="artist.id" :key="artist.id">{{artist.name}}</option>
 
             </select>
@@ -87,13 +89,21 @@ import {onMounted, ref} from 'vue';
 import {Music} from "@/model/Music";
 import {Artist} from "@/model/Artist";
 import {ArtistService} from "@/services/artist/ArtistService";
-import {MusicService} from "@/services/music/MusicService";
+import {useUploadFile} from "@/utils/useUploadURL";
 
 const imageUrl = ref<string | null>(null);
 const cover = ref<File>()
 const musicSelected = ref<Music>({} as Music)
 const musicForm = ref<HTMLFormElement>()
 const artists = ref<Artist[]>()
+const setMusicSelected = (music: Music) => {
+  musicSelected.value = music
+  imageUrl.value = useUploadFile(music.cover.url)
+}
+
+defineExpose({
+  setMusicSelected,
+})
 
 onMounted(async () => {
   artists.value = await ArtistService.get()
@@ -129,6 +139,12 @@ const handleImageUpload = (event: Event) => {
     reader.readAsDataURL(cover.value);
   }
 };
+
+function changeArtist(event: Event){
+  const target = event.target as HTMLSelectElement;
+  const selectedValue = target.value;
+  musicSelected.value.artist = artists.value?.find(artist => artist.id == Number(selectedValue)) as Artist
+}
 </script>
 
 <style scoped>

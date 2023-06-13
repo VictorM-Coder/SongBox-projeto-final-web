@@ -1,11 +1,11 @@
 <template>
   <div class="container">
     <h1 class="mb-4">Adicionar música</h1>
-    <MusicForm @add-music="addMusic"></MusicForm>
+    <MusicForm @add-music="addMusic" ref="musicForm"></MusicForm>
 
     <div class="container mt-5">
       <h1>Músicas</h1>
-      <table class="table">
+      <table class="table text-white">
         <thead>
         <tr>
           <th>Capa</th>
@@ -26,7 +26,7 @@
               <button @click="removeMusic(music.id)" class="btn btn-danger d-flex justify-content-center align-items-center">
                 <i class="bi bi-x-circle"></i>
               </button>
-              <button @click="updateMusic(music.id, music)" class="btn btn-primary d-flex justify-content-center align-items-center">
+              <button @click="updateMusic(music)" class="btn btn-primary d-flex justify-content-center align-items-center">
                 <i class="bi bi-pencil-square"></i>
               </button>
             </div>
@@ -46,6 +46,7 @@ import {useUploadFile} from "@/utils/useUploadURL";
 import MusicForm from "@/components/forms/MusicForm.vue";
 
 const musics = ref<Music[]>()
+const musicForm = ref<MusicForm>(null)
 const musicSelected = ref<Music>({} as Music)
 
 onMounted(async () => {
@@ -59,8 +60,8 @@ async function removeMusic(id: number) {
 async function addMusic(music: Music, cover: File) {
   await MusicService.post(music, cover)
 }
-function updateMusic(music: Music, id: number) {
-
+function updateMusic(music: Music) {
+  musicForm.value.setMusicSelected(music)
 }
 </script>
 
