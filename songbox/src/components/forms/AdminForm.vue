@@ -1,7 +1,6 @@
 <template>
   <div class="container">
-    <h1 class="mb-4">Adicionar música</h1>
-    <MusicForm @add-music="addMusic" ref="musicForm"></MusicForm>
+    <MusicForm @updateMusic="putMusic" @add-music="addMusic" ref="musicForm"></MusicForm>
 
     <div class="container mt-5">
       <h1>Músicas</h1>
@@ -62,6 +61,10 @@ async function addMusic(music: Music, cover: File) {
 }
 function updateMusic(music: Music) {
   musicForm.value.setMusicSelected(music)
+}
+
+async function putMusic(music: Music, cover: File){
+  await MusicService.put(music, cover)
 }
 </script>
 

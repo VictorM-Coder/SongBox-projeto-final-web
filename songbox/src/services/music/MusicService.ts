@@ -31,8 +31,18 @@ export const MusicService = {
         return value.data;
     },
 
-    async put(music: Music, id: number) {
-        const value = await api.private.put<Music>(`${urlMusic}/${id}`, music)
+    async put(music: Music, coverFile: File) {
+        const { cover, ...musicData } = music
+
+        const body = new FormData()
+        body.append('data', JSON.stringify(musicData))
+        body.append('files.cover', coverFile)
+
+        const value = await api.private.put<Music>(`${urlMusic}/${music.id}`, body, {
+            headers: {
+                Authorization: `Bearer ${useUserStore().user.jwt}`
+            }
+        })
         return value.data;
     },
 

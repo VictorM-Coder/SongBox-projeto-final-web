@@ -1,4 +1,5 @@
 <template>
+  <h1 class="mb-4">{{ isUpdate?  'Atualizar música' :'Adicionar música' }}</h1>
   <form ref="musicForm" class="row g-3 needs-validation" novalidate>
     <div class="col-12 col-md-8">
       <div class="container g-0">
@@ -65,7 +66,7 @@
         <label for="img-input">
             <span v-if="imageUrl">
               <div class="img-upload">
-                <img :src="imageUrl" v-if="imageUrl" class="img-fluid" alt="Uploaded Image" />
+                <img ref="imgComponent" :src="imageUrl" v-if="imageUrl" class="img-fluid" alt="Uploaded Image" />
               </div>
             </span>
           <span v-else>
@@ -79,7 +80,7 @@
       </div>
     </div>
     <div class="col-12 mt-4">
-      <button @click="addMusic" class="btn btn-crud" type="submit">Submit form</button>
+      <button @click="submitMusic" class="btn btn-crud" type="submit">{{ isUpdate?  'Atualizar música' : 'Adicionar música' }}</button>
     </div>
   </form>
 </template>
@@ -96,9 +97,17 @@ const cover = ref<File>()
 const musicSelected = ref<Music>({} as Music)
 const musicForm = ref<HTMLFormElement>()
 const artists = ref<Artist[]>()
-const setMusicSelected = (music: Music) => {
+const imgComponent = ref<HTMLInputElement>()
+let isUpdate: boolean = false
+
+const setMusicSelected = async (music: Music) => {
   musicSelected.value = music
   imageUrl.value = useUploadFile(music.cover.url)
+  const file = await convertURLtoFile(imageUrl.value, music.cover.url)
+  if (file) {
+    cover.value = file
+  }
+  isUpdate = true
 }
 
 defineExpose({
@@ -109,14 +118,18 @@ onMounted(async () => {
   artists.value = await ArtistService.get()
 })
 
-const emits = defineEmits(['addMusic'])
+const emits = defineEmits(['addMusic', 'updateMusic'])
 
-async function addMusic(event: SubmitEvent) {
+async function submitMusic(event: SubmitEvent) {
   event.preventDefault()
   event.stopPropagation()
   if (musicForm.value?.checkValidity()) {
     if (cover.value){
-      emits('addMusic', musicSelected.value, cover.value)
+      if (isUpdate){
+        emits('updateMusic', musicSelected.value, cover.value)
+      }else {
+        emits('addMusic', musicSelected.value, cover.value)
+      }
     } else {
       window.alert("selecione uma imagem")
     }
@@ -127,7 +140,11 @@ async function addMusic(event: SubmitEvent) {
 
 const handleImageUpload = (event: Event) => {
   const target = event.target as HTMLInputElement;
-  cover.value = target.files?.[0];
+  changeImage(target.files?.[0])
+};
+
+function changeImage(file: File | undefined){
+  cover.value = file;
 
   if (cover.value) {
     const reader = new FileReader();
@@ -138,13 +155,27 @@ const handleImageUpload = (event: Event) => {
 
     reader.readAsDataURL(cover.value);
   }
-};
+}
 
 function changeArtist(event: Event){
   const target = event.target as HTMLSelectElement;
   const selectedValue = target.value;
   musicSelected.value.artist = artists.value?.find(artist => artist.id == Number(selectedValue)) as Artist
 }
+
+async function convertURLtoFile(url: string, fileName: string): Promise<File | null> {
+  try {
+    const response = await fetch(url);
+    const arrayBuffer = await response.arrayBuffer();
+    const blob = new Blob([arrayBuffer], { type: response.headers.get('content-type') || 'application/octet-stream' });
+
+    return new File([blob], fileName);
+  } catch (error) {
+    console.error('Erro ao converter a URL para File:', error);
+    return null;
+  }
+}
+
 </script>
 
 <style scoped>

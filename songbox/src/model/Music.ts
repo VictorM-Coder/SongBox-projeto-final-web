@@ -1,6 +1,7 @@
 import type {Artist} from "@/model/Artist";
 
 export class Music {
+    id: number
     title:string
     artist:Artist
     minutesDuration: number
@@ -12,7 +13,8 @@ export class Music {
         url: string
     }
 
-    constructor(title: string, artist: Artist, grade: number, release: number, lyrics: string, url: string) {
+    constructor(id: number, title: string, artist: Artist, grade: number, release: number, lyrics: string, url: string) {
+        this.id = id
         this.title = title;
         this.artist = artist;
         this.minutesDuration = 0
