@@ -17,8 +17,8 @@ export class Music {
         this.id = id
         this.title = title;
         this.artist = artist;
-        this.minutesDuration = 0
-        this.secondsDuration = 0
+        this.minutesDuration = 4
+        this.secondsDuration = 20
         this.grade = grade;
         this.releaseYear = release;
         this.lyrics = lyrics;

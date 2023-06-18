@@ -1,29 +1,27 @@
 <template>
   <div class="d-block card-music s-border-radius">
     <div class="img-card">
-      <img class="img-fluid s-border-radius"  :src="music.cover.url" alt="capa do álbum">
+      <img class="img-fluid s-border-radius"  :src="useUploadFile(props.music.cover.url)" alt="capa do álbum">
     </div>
     <div class="d-flex justify-content-between text-card">
-      <p>{{ music.title }}</p>
+      <p>{{ props.music.title }}</p>
       <span>
-          {{ music.grade }}
+          {{ props.music.grade }}
           <i class="bi bi-star-fill"></i>
         </span>
     </div>
-    <p class="artist-text">{{ music.artist.name }}</p>
+    <p class="artist-text">{{ props.music.artist.name }}</p>
   </div>
 </template>
 
-<script>
+<script lang="ts" setup>
 import {Music} from "@/model/Music";
+import {useUploadFile} from "@/utils/useUploadURL";
 
-export default {
-  name: 'MusicCard',
-  components: {},
-  props: {
-    music:Music
-  },
-}
+const props = defineProps({
+  music: Music
+})
+
 </script>
 <style scoped>
 .img-card {

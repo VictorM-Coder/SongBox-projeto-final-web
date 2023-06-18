@@ -13,7 +13,7 @@ export const MusicService = {
                 populate: ['cover', 'artist'],
             }
         })
-        return value.data.data;
+        return value.data.data as Music[];
     },
 
     async post(music: Music, coverFile: File) {

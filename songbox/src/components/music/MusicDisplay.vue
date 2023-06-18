@@ -4,7 +4,7 @@
       <div class="row padding-4em">
         <div class="col-12 col-md-4 col-lg-3 d-flex justify-content-center">
           <div class="img-card">
-            <img class="img-fluid s-border-radius shadow-default"  :src="music.imgLink" alt="capa do álbum">
+            <img class="img-fluid s-border-radius shadow-default"  :src="music.cover.url" alt="capa do álbum">
           </div>
         </div>
         <div class="col-12 col-md-6 px-4 px-md-0 d-flex align-items-end mt-4 mt-md-0">
@@ -14,9 +14,9 @@
             <span class="music-data d-flex align-items-center">
               <span>{{ music.artist.name }}</span>
               <i class="bi bi-circle-fill divider"></i>
-              <span> {{ music.releaseYear.getFullYear() }}</span>
+              <span> {{ music.releaseYear }}</span>
               <i class="bi bi-circle-fill divider"></i>
-              <span> {{ music.duration }}</span>
+              <span> {{ `${music.minutesDuration}:${music.secondsDuration}` }} </span>
             </span>
           </div>
         </div>
@@ -43,7 +43,7 @@
             <div class="row">
               <div class="col-12 col-md-4 col-lg-3 d-flex justify-content-center">
                 <div class="img-card">
-                  <img class="img-fluid s-border-radius shadow-default"  :src="music.imgLink" alt="capa do álbum">
+                  <img class="img-fluid s-border-radius shadow-default"  :src="music.cover.url" alt="capa do álbum">
                 </div>
               </div>
               <div class="col-12 col-md-6 d-flex align-items-end mt-4 mt-md-0">
@@ -53,9 +53,9 @@
                   <span class="music-data d-flex align-items-center">
                     <span>{{ music.artist.name }}</span>
                     <i class="bi bi-circle-fill divider"></i>
-                    <span> {{ music.releaseYear.getFullYear() }}</span>
+                    <span> {{ music.releaseYear }}</span>
                     <i class="bi bi-circle-fill divider"></i>
-                    <span class="lead"> {{ music.duration }}</span>
+                    <span> {{ `${music.minutesDuration}:${music.secondsDuration}` }}</span>
                   </span>
                 </div>
               </div>
@@ -102,7 +102,7 @@ export default {
   },
   data() {
     return {
-      music: new Music(1, "Thunder", new Artist(1, "Imagine Dragons"), 2, 4.5, new Date(), "Just a young gun with a quick fuse\n" +
+      music: new Music(1, "Thunder", new Artist(1, "Imagine Dragons"), 4.5, 2017, "Just a young gun with a quick fuse\n" +
           "I was uptight, wanna let loose\n" +
           "I was dreaming of bigger things and\n" +
           "Wanna leave my own life behind\n" +
@@ -153,7 +153,9 @@ export default {
           "thunder, thunder, thun-\n" +
           "Thunder, th-th-thunder, thunder\n" +
           "(Whoa-oh-oh) thunder, thunder, thun-\n" +
-          "Thunder, th-th-thunder, thunder", "src/assets/capa.jpg")
+          "Thunder, th-th-thunder, thunder",
+          "src/assets/capa.jpg"
+      )
     }
   }
 }

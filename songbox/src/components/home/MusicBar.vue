@@ -8,39 +8,30 @@
     </div>
     <div class="container-fluid g-0 padding-to-footer">
       <div class="row">
-<!--        <div class="col-6 col-md-4 col-lg-3 mb-4 mb-lg-0">-->
-<!--          <music-card :music="music"></music-card>-->
-<!--        </div>-->
-<!--        <div class="col-6 col-md-4 col-lg-3 mb-4 mb-lg-0">-->
-<!--          <music-card :music="music"></music-card>-->
-<!--        </div>-->
-<!--        <div class="col-6 col-md-4 col-lg-3 mb-4 mb-lg-0">-->
-<!--          <music-card :music="music"></music-card>-->
-<!--        </div>-->
-<!--        <div class="col-6 col-md-4 col-lg-3 mb-4 mb-lg-0">-->
-<!--          <music-card :music="music"></music-card>-->
-<!--        </div>-->
+        <div v-for="music in musicList" :key="music.id" class="col-6 col-md-4 col-lg-3 mb-4 mb-lg-0">
+          <music-card :music="music"></music-card>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
+import {computed} from "vue";
+import {Music} from "@/model/Music";
 import MusicCard from "@/components/music-card/MusicCard.vue";
-import type {Music} from "@/model/Music";
-import {Artist} from "@/model/Artist";
-import {MusicService} from "@/services/music/MusicService";
 
-export default {
-  name: "EmAlta",
-  // components: { MusicCard },
-  props: {
-    musics: [],
-  },
-  async mounted() {
-    await MusicService.get().then(value => console.log(value)).catch(reason => console.log(reason))
+const loading = computed(() => !props.musics)
+const musicList = computed(() => props.musics)
+
+const props = defineProps({
+  musics: {
+    type: Array as () => Music[],
+    required: true,
+    default: () => []
   }
-}
+})
+
 </script>
 
 

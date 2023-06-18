@@ -81,6 +81,7 @@
     </div>
     <div class="col-12 mt-4">
       <button @click="submitMusic" class="btn btn-crud" type="submit">{{ isUpdate?  'Atualizar música' : 'Adicionar música' }}</button>
+      <button v-if="isUpdate" type="reset" @click="resetForm" class="btn-crud-secondary ms-4">Reiniciar forms</button>
     </div>
   </form>
 </template>
@@ -101,13 +102,13 @@ const imgComponent = ref<HTMLInputElement>()
 let isUpdate: boolean = false
 
 const setMusicSelected = async (music: Music) => {
+  isUpdate = true
   musicSelected.value = music
   imageUrl.value = useUploadFile(music.cover.url)
   const file = await convertURLtoFile(imageUrl.value, music.cover.url)
   if (file) {
     cover.value = file
   }
-  isUpdate = true
 }
 
 defineExpose({
@@ -174,6 +175,13 @@ async function convertURLtoFile(url: string, fileName: string): Promise<File | n
     console.error('Erro ao converter a URL para File:', error);
     return null;
   }
+}
+
+function resetForm(){
+  isUpdate = false
+  musicSelected.value = {} as Music
+  imageUrl.value = null
+  cover.value = undefined
 }
 
 </script>
