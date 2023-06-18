@@ -9,7 +9,9 @@
     <div class="container-fluid g-0 padding-to-footer">
       <div class="row">
         <div v-for="music in musicList" :key="music.id" class="col-6 col-md-4 col-lg-3 mb-4 mb-lg-0">
-          <music-card :music="music"></music-card>
+          <router-link :to="`/music?id=${music.id}`" class="custom-link">
+            <music-card :music="music"></music-card>
+          </router-link>
         </div>
       </div>
     </div>

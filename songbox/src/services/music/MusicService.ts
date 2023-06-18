@@ -1,9 +1,7 @@
-
 import {api} from "@/libs/axios";
 import type {Music} from "@/model/Music";
 import type {StrapiResponse} from "@/services/music/response/MusicResponse";
 import {useUserStore} from "@/stores/userStore";
-import {Artist} from "@/model/Artist";
 
 const urlMusic = '/api/musics'
 export const MusicService = {
@@ -14,6 +12,15 @@ export const MusicService = {
             }
         })
         return value.data.data as Music[];
+    },
+
+    async getById(id: number) {
+        const value = await api.public.get<StrapiResponse<Music>>(`${urlMusic}/${id}`, {
+            params: {
+                populate: ['cover', 'artist'],
+            }
+        })
+        return value.data.data as Music;
     },
 
     async post(music: Music, coverFile: File) {

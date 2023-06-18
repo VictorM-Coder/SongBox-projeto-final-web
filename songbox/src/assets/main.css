@@ -55,6 +55,18 @@ footer {
     --p0-primary-color: #e8e9fa;
 }
 
+.custom-link {
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+}
+
+.custom-link:hover {
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+}
+
 .header-margin {
     padding: 12em 0 4em 0;
 }
