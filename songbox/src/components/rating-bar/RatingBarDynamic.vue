@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex justify-content-between">
+  <div class="d-flex justify-content-between rating-bar">
     <i v-for="item in [0, 1, 2, 3, 4]" :key="item"  @mouseenter="handleMouseEnter($event, item)"
        @mouseleave="resetStars"
        @click="setRate"

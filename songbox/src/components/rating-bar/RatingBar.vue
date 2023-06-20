@@ -1,9 +1,9 @@
 <template>
-  <div class="d-flex justify-content-between">
-    <i :class="`bi ${getStarType(rating)}`"></i>
-    <i :class="`bi ${getStarType(rating-1)}`"></i>
-    <i :class="`bi ${getStarType(rating-2)}`"></i>
-    <i :class="`bi ${getStarType(rating-3)}`"></i>
+  <div class="d-flex justify-content-between rating-bar">
+    <i :class="`me-2 bi ${getStarType(rating)}`"></i>
+    <i :class="`me-2 bi ${getStarType(rating-1)}`"></i>
+    <i :class="`me-2 bi ${getStarType(rating-2)}`"></i>
+    <i :class="`me-2 bi ${getStarType(rating-3)}`"></i>
     <i :class="`bi ${getStarType(rating-4)}`"></i>
   </div>
 </template>
@@ -22,6 +22,6 @@ function getStarType(value: number){
 
 <style scoped>
 i {
-  font-size: 32px;
+  font-size: 20px;
 }
 </style>

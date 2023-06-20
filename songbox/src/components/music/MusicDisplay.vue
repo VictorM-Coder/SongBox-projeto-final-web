@@ -10,8 +10,10 @@
           </div>
           <div class="col-12 col-md-6 px-4 px-md-0 d-flex align-items-end mt-4 mt-md-0">
             <div>
-              <p>Rating</p>
-              <RatingBar rating="4.5"></RatingBar>
+              <div class="d-flex align-items-center mb-2">
+                <label class="d-flex align-items-center me-2 lh-1">RATING:</label>
+                <RatingBar rating="4.5"></RatingBar>
+              </div>
               <h1>{{ props.music.title }}</h1>
               <span class="music-data d-flex align-items-center">
               <span>{{ props.music.artist.name }}</span>
@@ -54,12 +56,12 @@
                     <p class="music-data text-uppercase mb-2">I LISTENED</p>
                     <h2 class="mb-1">{{ props.music.title }}</h2>
                     <span class="music-data d-flex align-items-center">
-                    <span>{{ props.music.artist.name }}</span>
-                    <i class="bi bi-circle-fill divider"></i>
-                    <span> {{ props.music.releaseYear }}</span>
-                    <i class="bi bi-circle-fill divider"></i>
-                    <span> {{ `${props.music.minutesDuration}:${props.music.secondsDuration}` }}</span>
-                  </span>
+                      <span>{{ props.music.artist.name }}</span>
+                      <i class="bi bi-circle-fill divider"></i>
+                      <span> {{ props.music.releaseYear }}</span>
+                      <i class="bi bi-circle-fill divider"></i>
+                      <span> {{ `${props.music.minutesDuration}:${props.music.secondsDuration}` }}</span>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -68,7 +70,8 @@
           <div class="modal-body border-0">
             <form>
               <div class="mb-3">
-                <rating-bar-dynamic></rating-bar-dynamic>
+                <label for="rating-bar" class="col-form-label">Rating:</label>
+                <rating-bar-dynamic id="rating-bar"></rating-bar-dynamic>
               </div>
               <div class="mb-3">
                 <label for="recipient-name" class="col-form-label">Title:</label>

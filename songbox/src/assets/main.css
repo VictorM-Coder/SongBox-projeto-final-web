@@ -170,3 +170,7 @@ footer {
 .bg-s0 {
     background-color: var(--b1-primary-color);
 }
+
+.rating-bar {
+    max-width: 320px;
+}
