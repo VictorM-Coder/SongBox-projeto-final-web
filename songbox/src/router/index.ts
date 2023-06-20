@@ -40,7 +40,6 @@ router.beforeEach((to, from, next) => {
     const isAuthenticated = (useUserStore().user.username);
     if (requiresAuth && !isAuthenticated) {
         next('/login');
-        console.log("nao deu")
     } else {
         next();
     }

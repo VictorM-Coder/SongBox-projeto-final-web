@@ -11,6 +11,7 @@
           <div class="col-12 col-md-6 px-4 px-md-0 d-flex align-items-end mt-4 mt-md-0">
             <div>
               <p>Rating</p>
+              <RatingBar></RatingBar>
               <h1>{{ props.music.title }}</h1>
               <span class="music-data d-flex align-items-center">
               <span>{{ props.music.artist.name }}</span>
@@ -36,7 +37,8 @@
         </p>
       </div>
     </div>
-    <div class="modal fade modal-lg" id="musicModal" tabindex="-1" aria-labelledby="musicModalLabel" aria-hidden="true">
+
+    <div ref="reviewModal" class="modal fade modal-lg" id="musicModal" tabindex="-1" aria-labelledby="musicModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content bg-s0">
           <div class="modal-header border-0">
@@ -74,8 +76,13 @@
                 <textarea class="form-control" id="message-text"></textarea>
               </div>
               <div class="mb-3">
-                <label for="message-text" class="col-form-label">Tags:</label>
-                <input type="text" class="form-control" id="message-text">
+                <label for="tags-input" class="col-form-label">Tags:</label>
+                <vue3-tags-input
+                    id="tags-input"
+                    :tags="tags"
+                    placeholder="add tags"
+                    @on-tags-changed="handleChangeTag"
+                />
               </div>
             </form>
           </div>
@@ -93,15 +100,26 @@
 import {Modal} from "bootstrap";
 import {Music} from "@/model/Music";
 import {useUploadFile} from "@/utils/useUploadURL";
+import {ref} from "vue";
+// @ts-ignore
+import Vue3TagsInput from 'vue3-tags-input';
+import RatingBar from "@/components/rating-bar/RatingBar.vue";
 
+const tag = ''
+const tags = ref<string[]>([]);
+const reviewModal = ref<Modal>()
 
 const props = defineProps({
   music: Music
 })
 
 function showMusicModal(){
-  const modalInstance = new Modal(document.getElementById("musicModal"));
+  const modalInstance = new Modal(document.getElementById("musicModal") as Element);
   modalInstance.show();
+}
+
+function handleChangeTag(newTags:string[]) {
+  tags.value = newTags
 }
 
 </script>
