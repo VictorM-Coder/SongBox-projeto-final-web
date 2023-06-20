@@ -174,3 +174,14 @@ footer {
 .rating-bar {
     max-width: 320px;
 }
+
+.music-data {
+    font-size: 1rem;
+    color: var(--p0-primary-color);
+}
+
+
+.divider {
+    font-size: 0.4em;
+    margin: 0 12px;
+}
