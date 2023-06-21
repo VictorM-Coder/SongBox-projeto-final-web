@@ -40,7 +40,7 @@
       </div>
     </div>
 
-    <review-form id="musicModal" ref="reviewModal" :music="music"></review-form>
+    <review-form id="reviewModal" ref="reviewModal" :music="music"></review-form>
   </div>
 </template>
 
@@ -59,13 +59,13 @@ const props = defineProps({
 })
 
 onMounted(() => {
-  document.getElementById("musicModal")?.addEventListener('hidden.bs.modal', () => {
+  document.getElementById("reviewModal")?.addEventListener('hidden.bs.modal', () => {
     reviewModal.value.resetForm()
   })
 })
 
 function showMusicModal(){
-  const modalInstance = new Modal(document.getElementById("musicModal") as Element);
+  const modalInstance = new Modal(document.getElementById("reviewModal") as Element);
   modalInstance.show();
 }
 

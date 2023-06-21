@@ -27,24 +27,30 @@
           </div>
         </div>
         <div class="modal-body border-0">
-          <form>
+          <form ref="reviewForm" class="needs-validation" novalidate>
             <div class="mb-3">
               <label for="rating-bar" class="col-form-label">Rating:</label>
               <rating-bar-dynamic id="rating-bar"></rating-bar-dynamic>
             </div>
             <div class="mb-3">
               <label for="recipient-name" class="col-form-label">Title:</label>
-              <input v-model="review.title" type="text" class="form-control" id="recipient-name">
+              <input v-model="review.title" type="text" class="form-control" id="recipient-name" required>
+              <div class="invalid-feedback">
+                Campo obrigatório.
+              </div>
             </div>
             <div class="mb-3">
               <label for="message-text" class="col-form-label">Review:</label>
-              <textarea v-model="review.review" class="form-control" id="message-text"></textarea>
+              <textarea v-model="review.review" class="form-control" id="message-text" required></textarea>
+              <div class="invalid-feedback">
+                Campo obrigatório.
+              </div>
             </div>
             <div class="mb-3">
               <label for="tags-input" class="col-form-label">Tags:</label>
               <vue3-tags-input
                   id="tags-input"
-                  :tags="tags"
+                  :tags="review.tags"
                   placeholder="add tags"
                   @on-tags-changed="handleChangeTag"
               />
@@ -53,7 +59,7 @@
         </div>
         <div class="modal-footer border-0">
           <button type="button" class="btn-crud-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn-crud">Save changes</button>
+          <button @click="submitReview" type="button" class="btn-crud">Save changes</button>
         </div>
       </div>
     </div>
@@ -69,23 +75,32 @@ import Vue3TagsInput from 'vue3-tags-input';
 import RatingBarDynamic from "@/components/rating-bar/RatingBarDynamic.vue";
 import type {Review} from "@/model/Review";
 
-const tags = ref<string[]>([]);
+const reviewForm = ref<HTMLFormElement>()
 const review = ref<Review>({} as Review)
 const props = defineProps({
   music: Music
 })
 
 function handleChangeTag(newTags:string[]) {
-  tags.value = newTags
+  review.value.tags = newTags
 }
 
 const resetForm = () => {
   review.value = {} as Review
-  tags.value = []
 }
 
 defineExpose({
   resetForm,
 })
+
+async function submitReview(event: SubmitEvent) {
+  event.preventDefault()
+  event.stopPropagation()
+  if (reviewForm.value?.checkValidity()) {
+    console.log(review.value)
+  } else {
+    reviewForm.value?.classList.add('was-validated')
+  }
+}
 
 </script>

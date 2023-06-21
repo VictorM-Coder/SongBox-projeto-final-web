@@ -1,4 +1,5 @@
 export interface Review {
+    id: number
     title: string,
     review: string,
     postDate: Date,
