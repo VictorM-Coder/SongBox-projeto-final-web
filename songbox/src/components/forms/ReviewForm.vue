@@ -1,5 +1,5 @@
 <template>
-  <div class="modal fade modal-lg" tabindex="-1" aria-labelledby="musicModalLabel" aria-hidden="true">
+  <div class="modal fade modal-lg" tabindex="-1" data-bs-backdrop="static" aria-labelledby="musicModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content bg-s0">
         <div class="modal-header border-0">
@@ -58,7 +58,7 @@
           </form>
         </div>
         <div class="modal-footer border-0">
-          <button type="button" class="btn-crud-secondary" data-bs-dismiss="modal">Close</button>
+          <button @click="resetForm" type="button" class="btn-crud-secondary" data-bs-dismiss="modal">Close</button>
           <button @click="submitReview" type="button" class="btn-crud">Save changes</button>
         </div>
       </div>

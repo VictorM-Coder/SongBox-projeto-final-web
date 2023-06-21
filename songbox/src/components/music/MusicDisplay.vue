@@ -40,7 +40,7 @@
       </div>
     </div>
 
-    <review-form id="reviewModal" ref="reviewModal" :music="music"></review-form>
+    <review-form id="reviewModal" :music="music"></review-form>
   </div>
 </template>
 
@@ -48,20 +48,12 @@
 import {Modal} from "bootstrap";
 import {Music} from "@/model/Music";
 import {useUploadFile} from "@/utils/useUploadURL";
-import {onMounted, ref} from "vue";
+import {ref} from "vue";
 import RatingBar from "@/components/rating-bar/RatingBar.vue";
 import ReviewForm from "@/components/forms/ReviewForm.vue";
 
-const reviewModal = ref<ReviewForm>()
-
 const props = defineProps({
   music: Music
-})
-
-onMounted(() => {
-  document.getElementById("reviewModal")?.addEventListener('hidden.bs.modal', () => {
-    reviewModal.value.resetForm()
-  })
 })
 
 function showMusicModal(){
