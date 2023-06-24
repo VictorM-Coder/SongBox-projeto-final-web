@@ -30,7 +30,7 @@
           <form ref="reviewForm" class="needs-validation" novalidate>
             <div class="mb-3">
               <label for="rating-bar" class="col-form-label">Rating:</label>
-              <rating-bar-dynamic @rated="setRating" id="rating-bar"></rating-bar-dynamic>
+              <rating-bar-dynamic ref="ratingBar" @rated="setRating" id="rating-bar"></rating-bar-dynamic>
             </div>
             <div class="mb-3">
               <label for="recipient-name" class="col-form-label">Title:</label>
@@ -75,9 +75,11 @@ import Vue3TagsInput from 'vue3-tags-input';
 import RatingBarDynamic from "@/components/rating-bar/RatingBarDynamic.vue";
 import type {Review} from "@/model/Review";
 import {ReviewService} from "@/services/review/ReviewService";
+import {useNotificationStore} from "@/stores/useNotification";
 
 const reviewForm = ref<HTMLFormElement>()
 const review = ref<Review>({} as Review)
+const ratingBar = ref<RatingBarDynamic>()
 const props = defineProps({
   music: Music
 })
@@ -88,11 +90,13 @@ function handleChangeTag(newTags:string[]) {
 
 const resetForm = () => {
   review.value = {} as Review
+  ratingBar.value.resetComponent()
 }
 
-defineExpose({
-  resetForm,
-})
+const emits = defineEmits([
+    'musicAdded'
+])
+
 
 async function submitReview(event: SubmitEvent) {
   event.preventDefault()
@@ -102,7 +106,11 @@ async function submitReview(event: SubmitEvent) {
       review.value.music = props.music.id
       review.value.postDate = new Date()
       review.value.rate = review.value.rate?? 0
-      await ReviewService.post(review.value)
+      if (await ReviewService.post(review.value)) {
+        useNotificationStore().add('Música adicionada com sucesso')
+        emits('musicAdded')
+        resetForm()
+      }
     }
   } else {
     reviewForm.value?.classList.add('was-validated')

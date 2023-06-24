@@ -40,7 +40,7 @@
       </div>
     </div>
 
-    <review-form id="reviewModal" :music="music"></review-form>
+    <review-form ref="modalInstance" id="reviewModal" :music="music" @music-added="closeModal"></review-form>
   </div>
 </template>
 
@@ -51,13 +51,20 @@ import {useUploadFile} from "@/utils/useUploadURL";
 import RatingBar from "@/components/rating-bar/RatingBar.vue";
 import ReviewForm from "@/components/forms/ReviewForm.vue";
 
+let modalInstance: Modal;
+
+
 const props = defineProps({
   music: Music
 })
 
 function showMusicModal(){
-  const modalInstance = new Modal(document.getElementById("reviewModal") as Element);
+  modalInstance = new Modal(document.getElementById("reviewModal") as Element);
   modalInstance.show();
+}
+
+function closeModal() {
+  modalInstance.hide();
 }
 
 </script>

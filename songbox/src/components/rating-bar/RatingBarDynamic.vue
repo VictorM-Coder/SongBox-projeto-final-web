@@ -15,7 +15,15 @@ import {ref} from "vue";
 const ratingOver  = ref<number>(0)
 let rating = 0
 
+const resetComponent = () => {
+  rating = 0
+  resetStars()
+}
+
 const emit = defineEmits(['rated'])
+defineExpose({
+  resetComponent
+})
 
 const handleMouseEnter = (event: MouseEvent, min: number) => {
   const componentElement = event.target as HTMLElement;
