@@ -38,11 +38,17 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
     const isAuthenticated = (useUserStore().user.username);
-    if (requiresAuth && !isAuthenticated) {
+    const userRoles = [...useUserStore().user.role]
+
+    if ((requiresAuth && !isAuthenticated) || hasRole(userRoles, to.meta.roleRequired as string)) {
         next('/login');
     } else {
         next();
     }
 });
+
+function hasRole(userRoles: string[], requiredRole: string){
+    return userRoles.includes(requiredRole)
+}
 
 export default router;

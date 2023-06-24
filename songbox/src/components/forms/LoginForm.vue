@@ -46,6 +46,7 @@
 import {AuthService} from "@/services/auth/AuthService";
 import {ref} from "vue";
 import router from "@/router";
+import {useUserStore} from "@/stores/userStore";
 
 const nameValue = ref('')
 const passwordValue = ref('')
@@ -68,7 +69,12 @@ async function login(event: Event) {
 
   if (formLogin.value?.checkValidity()) {
     const user = await AuthService.signIn({identifier: nameValue.value, password: passwordValue.value})
-    await router.push('/admin')
+    if (useUserStore().user.role === 'admin'){
+      await router.push('/admin')
+    } else {
+      await router.push('/')
+    }
+
   }else {
     formLogin.value?.classList.add('was-validated')
   }

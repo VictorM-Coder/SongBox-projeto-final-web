@@ -5,5 +5,5 @@ export interface Review {
     postDate: Date,
     rate: number,
     music: number,
-    tags: string[] | null
+    tags: string[]
 }

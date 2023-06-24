@@ -30,7 +30,7 @@
           <form ref="reviewForm" class="needs-validation" novalidate>
             <div class="mb-3">
               <label for="rating-bar" class="col-form-label">Rating:</label>
-              <rating-bar-dynamic id="rating-bar"></rating-bar-dynamic>
+              <rating-bar-dynamic @rated="setRating" id="rating-bar"></rating-bar-dynamic>
             </div>
             <div class="mb-3">
               <label for="recipient-name" class="col-form-label">Title:</label>
@@ -74,6 +74,7 @@ import {ref} from "vue";
 import Vue3TagsInput from 'vue3-tags-input';
 import RatingBarDynamic from "@/components/rating-bar/RatingBarDynamic.vue";
 import type {Review} from "@/model/Review";
+import {ReviewService} from "@/services/review/ReviewService";
 
 const reviewForm = ref<HTMLFormElement>()
 const review = ref<Review>({} as Review)
@@ -97,10 +98,19 @@ async function submitReview(event: SubmitEvent) {
   event.preventDefault()
   event.stopPropagation()
   if (reviewForm.value?.checkValidity()) {
-    console.log(review.value)
+    if (props.music?.id ) {
+      review.value.music = props.music.id
+      review.value.postDate = new Date()
+      review.value.rate = review.value.rate?? 0
+      await ReviewService.post(review.value)
+    }
   } else {
     reviewForm.value?.classList.add('was-validated')
   }
+}
+
+function setRating(rate: number){
+  review.value.rate = rate
 }
 
 </script>

@@ -34,7 +34,7 @@ const handleMouseEnter = (event: MouseEvent, min: number) => {
 
 function setRate(){
   rating = ratingOver.value
-  emit('rated')
+  emit('rated', rating)
 }
 
 function resetStars(){

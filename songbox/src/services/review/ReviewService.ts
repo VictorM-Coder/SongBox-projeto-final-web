@@ -2,6 +2,7 @@ import {api} from "@/libs/axios";
 import {useUserStore} from "@/stores/userStore";
 import type {Review} from "@/model/Review";
 import type {StrapiResponse} from "@/services/music/response/MusicResponse";
+import {TagService} from "@/services/tag/TagService";
 
 const urlReview = '/api/reviews'
 export const ReviewService = {
@@ -24,8 +25,11 @@ export const ReviewService = {
     },
 
     async post(review: Review) {
+        const {id, tags, ...reviewData} = review
+        const tagsList = await TagService.postAll(tags)
+
         const body = new FormData()
-        body.append('data', JSON.stringify(review))
+        body.append('data', JSON.stringify({...reviewData, tags: tagsList}))
 
         const value = await api.private.post<Review>(urlReview, body, {
             headers: {
