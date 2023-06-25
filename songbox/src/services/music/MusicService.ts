@@ -6,14 +6,16 @@ import {useNotificationStore} from "@/stores/useNotification";
 
 const urlMusic = '/api/musics'
 export const MusicService = {
-    async get() {
+    async get(page = 1) {
         try {
             const value = await api.public.get<StrapiResponse<Music[]>>(urlMusic, {
                 params: {
                     populate: ['cover', 'artist'],
+                    "pagination[page]": page,
+                    "pagination[pageSize]": 16
                 }
             })
-            return value.data.data as Music[];
+            return {items: value.data.data, pagination: value.data.meta.pagination};
         } catch (error) {
             useNotificationStore().error('Falha ao buscar músicas')
         }
@@ -21,7 +23,7 @@ export const MusicService = {
 
     async getById(id: number) {
         try {
-            const value = await api.public.get<Music>(`${urlMusic}/${id}`, {
+            const value = await api.public.get<{data: Music}>(`${urlMusic}/${id}`, {
                 params: {
                     populate: ['cover', 'artist'],
                 }

@@ -2,7 +2,7 @@ import type {Music} from "@/model/Music";
 
 export interface StrapiResponse<T> {
     data: T;
-    meta: Pagination
+    meta: { pagination: Pagination }
 }
 
 export interface Pagination {

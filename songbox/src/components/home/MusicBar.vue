@@ -14,7 +14,7 @@
           </router-link>
         </div>
       </div>
-      <pagination :items-per-page="10" :total-items="25" @change-page="changePage"></pagination>
+      <pagination :items-per-page="16" :total-items="totItems" @change-page="changePage"></pagination>
     </div>
   </div>
 </template>
@@ -31,11 +31,16 @@ const musicList = computed(() => props.musics)
 const props = defineProps({
   musics: {
     type: Array as () => Music[]
-  }
+  },
+  totItems: Number
 })
 
+const emits = defineEmits([
+    'changePage'
+])
+
 function changePage(page: number) {
-  console.log(page)
+  emits("changePage", page)
 }
 
 </script>
