@@ -3,21 +3,23 @@
     <header class="container">
       <div class="d-flex row justify-content-between align-content-center">
         <div class="col-3 d-flex align-items-center">
-          <i class="logo">
-            <img src="@/assets/logo-songbox.svg" alt="logo  songbox">
-          </i>
+          <router-link to="/">
+            <i class="logo">
+              <img src="@/assets/logo-songbox.svg" alt="logo  songbox">
+            </i>
+          </router-link>
         </div>
 
         <nav class="col-12 col-md-6 order-5 order-md-0 d-flex justify-content-center justify-content-md-end justify-content-lg-center mt-3 mt-md-0 border-sm-0 border-top">
           <ul class="nav">
             <li class="nav-item">
-              <a class="nav-link" href="#">Playlists</a>
+              <router-link class="nav-link" to="" >Playlists</router-link>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Home</a>
+              <router-link class="nav-link" to="/" >Home</router-link>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Resenhas</a>
+              <router-link class="nav-link" to="/">Resenhas</router-link>
             </li>
           </ul>
         </nav>

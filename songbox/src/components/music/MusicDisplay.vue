@@ -46,10 +46,12 @@
 
 <script setup lang="ts">
 import {Modal} from "bootstrap";
-import {Music} from "@/model/Music";
 import {useUploadFile} from "@/utils/useUploadURL";
 import RatingBar from "@/components/rating-bar/RatingBar.vue";
 import ReviewForm from "@/components/forms/ReviewForm.vue";
+import {useUserStore} from "@/stores/userStore";
+import router from "@/router";
+import {Music} from "@/model/Music";
 
 let modalInstance: Modal;
 
@@ -59,8 +61,13 @@ const props = defineProps({
 })
 
 function showMusicModal(){
-  modalInstance = new Modal(document.getElementById("reviewModal") as Element);
-  modalInstance.show();
+  if (useUserStore().user.username){
+    modalInstance = new Modal(document.getElementById("reviewModal") as Element);
+    modalInstance.show();
+  } else {
+    router.push('/login')
+  }
+
 }
 
 function closeModal() {

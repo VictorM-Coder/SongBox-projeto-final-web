@@ -15,11 +15,25 @@
 </template>
 
 <script lang="ts" setup>
-import {Music} from "@/model/Music";
 import {useUploadFile} from "@/utils/useUploadURL";
+import {Artist} from "@/model/Artist";
 
 const props = defineProps({
-  music: Music
+  music: {
+    type: Object as () => {
+      id: number
+      title:string
+      artist:Artist
+      minutesDuration: number
+      secondsDuration: number
+      grade:number
+      releaseYear: number
+      lyrics:string
+      cover: {
+        url: string
+      }
+    }
+  }
 })
 
 </script>

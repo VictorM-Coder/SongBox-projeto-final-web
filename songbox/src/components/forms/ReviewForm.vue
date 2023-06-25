@@ -67,7 +67,6 @@
 </template>
 
 <script setup lang="ts">
-import {Music} from "@/model/Music";
 import {useUploadFile} from "@/utils/useUploadURL";
 import {ref} from "vue";
 // @ts-ignore
@@ -76,6 +75,7 @@ import RatingBarDynamic from "@/components/rating-bar/RatingBarDynamic.vue";
 import type {Review} from "@/model/Review";
 import {ReviewService} from "@/services/review/ReviewService";
 import {useNotificationStore} from "@/stores/useNotification";
+import {Music} from "@/model/Music";
 
 const reviewForm = ref<HTMLFormElement>()
 const review = ref<Review>({} as Review)

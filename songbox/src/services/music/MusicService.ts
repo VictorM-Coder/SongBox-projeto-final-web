@@ -21,12 +21,12 @@ export const MusicService = {
 
     async getById(id: number) {
         try {
-            const value = await api.public.get<StrapiResponse<Music>>(`${urlMusic}/${id}`, {
+            const value = await api.public.get<Music>(`${urlMusic}/${id}`, {
                 params: {
                     populate: ['cover', 'artist'],
                 }
             })
-            return value.data.data as Music;
+            return (value.data.data as Music);
         } catch (error) {
             useNotificationStore().error('Falha ao buscar música')
         }
