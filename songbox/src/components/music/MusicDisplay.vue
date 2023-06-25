@@ -12,7 +12,7 @@
             <div>
               <div class="d-flex align-items-center mb-2">
                 <label class="d-flex align-items-center me-2 lh-1">RATING:</label>
-                <RatingBar rating="4.5"></RatingBar>
+                <RatingBar :rating="props.music.rate"></RatingBar>
               </div>
               <h1>{{ props.music.title }}</h1>
               <span class="music-data d-flex align-items-center">
@@ -57,7 +57,9 @@ let modalInstance: Modal;
 
 
 const props = defineProps({
-  music: Music
+  music: {
+    type: Music
+  }
 })
 
 function showMusicModal(){

@@ -15,11 +15,17 @@ import {onMounted, ref} from "vue";
 import { useRoute } from "vue-router"
 import {Music} from "@/model/Music";
 import {MusicService} from "@/services/music/MusicService";
+import {ReviewService} from "@/services/review/ReviewService";
 
 const music = ref<Music>()
 
 onMounted(async () => {
   music.value = await MusicService.getById(Number(useRoute().query.id))
+  if (music.value) {
+    const rate = await ReviewService.getAvgMusic(music.value?.id)
+    music.value.rate = rate ?? 0
+  }
+
 })
 
 </script>

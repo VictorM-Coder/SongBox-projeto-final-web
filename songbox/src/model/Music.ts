@@ -6,7 +6,7 @@ export class Music {
     artist:Artist
     minutesDuration: number
     secondsDuration: number
-    grade:number
+    rate:number
     releaseYear: number
     lyrics:string
     cover: {
@@ -19,7 +19,7 @@ export class Music {
         this.artist = artist;
         this.minutesDuration = 4
         this.secondsDuration = 20
-        this.grade = grade;
+        this.rate = grade;
         this.releaseYear = release;
         this.lyrics = lyrics;
         this.cover = {url: url};
