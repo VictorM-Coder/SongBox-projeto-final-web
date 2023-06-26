@@ -4,6 +4,7 @@ import type {UserResponse} from "@/services/auth/response/UserResponse";
 
 export const useUserStore = defineStore('user', () => {
     const user = ref<UserResponse>( {
+        id: NaN,
         username: "",
         jwt: "",
         role: ""
@@ -13,6 +14,7 @@ export const useUserStore = defineStore('user', () => {
     const isAuthenticated = computed(() => !!user.value.jwt)
 
     function logout() {
+        user.value.id = NaN
         user.value.username = ""
         user.value.jwt = ""
         user.value.role = ""

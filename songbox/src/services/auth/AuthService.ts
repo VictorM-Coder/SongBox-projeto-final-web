@@ -16,6 +16,7 @@ export const AuthService = {
         })
 
         const userResponse: UserResponse = {
+            id: res.data.id,
             jwt: response.data.jwt,
             role: res.data.role.type,
             username: response.data.user.username

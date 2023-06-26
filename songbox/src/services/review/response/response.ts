@@ -1,4 +1,4 @@
-export interface ReviewResponse {
+export interface SimpleReviewResponse {
     id: number,
     title: string,
     rate: number,
@@ -10,5 +10,8 @@ export interface ReviewResponse {
         cover: {
             url: string
         }
+    },
+    author: {
+        username: string
     }
 }

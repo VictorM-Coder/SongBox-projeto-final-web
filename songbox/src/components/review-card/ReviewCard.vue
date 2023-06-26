@@ -7,9 +7,11 @@
 
       <div class="col-6">
         <div class="d-flex flex-column">
-          <h3>{{ props.review.title }}</h3>
+          <div class="d-flex justify-content-between">
+            <h3>{{ props.review.title }}</h3>
+          </div>
           <div class="d-flex align-items-center">
-            <span class="me-2">Usuário:</span>
+            <span class="me-2">{{props.review.author.username}}:</span>
             <rating-bar :rating="props.review.rate"/>
           </div>
         </div>
@@ -28,11 +30,11 @@
 <script lang="ts" setup>
 import {useUploadFile} from "@/utils/useUploadURL";
 import RatingBar from "@/components/rating-bar/RatingBar.vue";
-import type {ReviewResponse} from "@/services/review/response/ReviewResponse";
+import type {SimpleReviewResponse} from "@/services/review/response/response";
 
 const props = defineProps({
   review: {
-    type: Object as () => ReviewResponse
+    type: Object as () => SimpleReviewResponse
   }
 })
 

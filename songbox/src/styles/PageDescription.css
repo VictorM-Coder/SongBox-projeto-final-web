@@ -1,0 +1,46 @@
+h1 {
+    font-size: 1.5em;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+@media (min-width: 576px) {
+    h1 {
+        font-size: 2em;
+    }
+
+}
+@media (min-width: 768px) {
+    h1 {
+        font-size: 3.5em;
+    }
+}
+
+@media (min-width: 992px) {
+    h1 {
+        font-size: 3.5em;
+    }
+}
+
+h2 {
+    margin-bottom: 1em;
+}
+
+.lyrics-text {
+    white-space: pre-line;
+    font-size: 1em;
+    color: var(--p0-primary-color);
+}
+
+.img-card {
+    max-width: 16em;
+    border-radius: 8px;
+}
+
+.action-bar {
+    padding: 4em 0;
+}
+
+.padding-4em{
+    padding-bottom: 4em;
+}

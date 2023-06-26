@@ -4,18 +4,22 @@ import type {Review} from "@/model/Review";
 import type {StrapiResponse} from "@/services/music/response/MusicResponse";
 import {TagService} from "@/services/tag/TagService";
 import {useNotificationStore} from "@/stores/useNotification";
-import type {ReviewResponse} from "@/services/review/response/ReviewResponse";
+import type {SimpleReviewResponse} from "@/services/review/response/response";
+import type {CompleteReviewResponse} from "@/services/review/response/CompleteReviewResponse";
 
 const urlReview = '/api/reviews'
 export const ReviewService = {
-    async get() {
+    async getByUser(userId: number) {
         try {
-            const value = await api.public.get<StrapiResponse<ReviewResponse[]>>(urlReview, {
+            const value = await api.public.get<StrapiResponse<SimpleReviewResponse[]>>(`${urlReview}?filters[author][id][$eq]=${userId}`, {
                 params: {
-                    populate: ['music', 'music.artist', 'music.cover'],
+                    populate: ['music', 'music.artist', 'music.cover', 'author'],
+                },
+                headers: {
+                    Authorization: `Bearer ${useUserStore().user.jwt}`
                 }
             })
-            return value.data.data as ReviewResponse[];
+            return value.data.data as SimpleReviewResponse[];
         } catch (error) {
             useNotificationStore().error('Falha ao buscar reviews')
         }
@@ -34,12 +38,15 @@ export const ReviewService = {
 
     async getById(id: number) {
         try {
-            const value = await api.public.get<StrapiResponse<Review>>(`${urlReview}/${id}`, {
+            const value = await api.public.get<StrapiResponse<CompleteReviewResponse>>(`${urlReview}/${id}`, {
                 params: {
-                    populate: [],
+                    populate: ['music', 'music.cover', 'music.artist', 'author'],
+                },
+                headers: {
+                    Authorization: `Bearer ${useUserStore().user.jwt}`
                 }
             })
-            return value.data.data as Review;
+            return value.data.data as CompleteReviewResponse;
         } catch (error) {
             useNotificationStore().error('Falha ao buscar review')
         }
@@ -50,7 +57,8 @@ export const ReviewService = {
         const tagsList = (tags)? await TagService.postAll(tags): []
 
         const body = new FormData()
-        body.append('data', JSON.stringify({...reviewData, tags: tagsList}))
+        console.log(useUserStore().user.id)
+        body.append('data', JSON.stringify({...reviewData, tags: tagsList, author: useUserStore().user.id}))
 
         try {
             const value = await api.private.post<Review>(urlReview, body, {

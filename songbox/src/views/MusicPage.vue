@@ -25,7 +25,6 @@ onMounted(async () => {
     const rate = await ReviewService.getAvgMusic(music.value?.id)
     music.value.rate = rate ?? 0
   }
-
 })
 
 </script>
