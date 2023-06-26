@@ -49,7 +49,10 @@ const musicForm = ref<MusicForm>(null)
 const musicSelected = ref<Music>({} as Music)
 
 onMounted(async () => {
-  musics.value = await MusicService.get();
+  const musicsResponse = await MusicService.get();
+  if(musicsResponse){
+    musics.value = musicsResponse.items
+  }
 })
 
 async function removeMusic(id: number) {
