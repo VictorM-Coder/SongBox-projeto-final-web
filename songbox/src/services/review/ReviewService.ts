@@ -4,17 +4,18 @@ import type {Review} from "@/model/Review";
 import type {StrapiResponse} from "@/services/music/response/MusicResponse";
 import {TagService} from "@/services/tag/TagService";
 import {useNotificationStore} from "@/stores/useNotification";
+import type {ReviewResponse} from "@/services/review/response/ReviewResponse";
 
 const urlReview = '/api/reviews'
 export const ReviewService = {
     async get() {
         try {
-            const value = await api.public.get<StrapiResponse<Review[]>>(urlReview, {
+            const value = await api.public.get<StrapiResponse<ReviewResponse[]>>(urlReview, {
                 params: {
-                    populate: [],
+                    populate: ['music', 'music.artist', 'music.cover'],
                 }
             })
-            return value.data.data as Review[];
+            return value.data.data as ReviewResponse[];
         } catch (error) {
             useNotificationStore().error('Falha ao buscar reviews')
         }

@@ -19,7 +19,7 @@
               <router-link class="nav-link" to="/" >Home</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/">Resenhas</router-link>
+              <router-link class="nav-link" to="/reviews">Resenhas</router-link>
             </li>
           </ul>
         </nav>

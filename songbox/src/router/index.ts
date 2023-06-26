@@ -5,6 +5,7 @@ import MusicPage from "@/views/MusicPage.vue";
 import Login from "@/views/Login.vue";
 import Admin from "@/views/Admin.vue";
 import {useUserStore} from "@/stores/userStore";
+import Reviews from "@/views/Reviews.vue";
 
 const routes: RouteRecordRaw[] = [
     {
@@ -27,6 +28,11 @@ const routes: RouteRecordRaw[] = [
         name: 'admin',
         component: Admin,
         meta: { permissions: ['admin'], requiresAuth: true }
+    },
+    {
+        path: '/reviews',
+        name: 'reviews',
+        component: Reviews
     }
 ];
 

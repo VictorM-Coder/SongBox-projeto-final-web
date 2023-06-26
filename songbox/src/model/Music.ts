@@ -6,7 +6,7 @@ export class Music {
     artist:Artist
     minutesDuration: number
     secondsDuration: number
-    rate:number
+    rate?:number
     releaseYear: number
     lyrics:string
     cover: {

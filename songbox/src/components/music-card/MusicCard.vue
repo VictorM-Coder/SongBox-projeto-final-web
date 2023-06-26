@@ -5,10 +5,6 @@
     </div>
     <div class="d-flex justify-content-between text-card">
       <p>{{ props.music.title }}</p>
-      <span>
-          {{ props.music.grade }}
-          <i class="bi bi-star-fill"></i>
-        </span>
     </div>
     <p class="artist-text">{{ props.music.artist.name }}</p>
   </div>
@@ -26,7 +22,7 @@ const props = defineProps({
       artist:Artist
       minutesDuration: number
       secondsDuration: number
-      grade:number
+      rate:number
       releaseYear: number
       lyrics:string
       cover: {
