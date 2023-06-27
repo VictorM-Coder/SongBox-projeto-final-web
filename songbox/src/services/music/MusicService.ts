@@ -42,12 +42,15 @@ export const MusicService = {
         body.append('files.cover', coverFile)
 
         try {
-            const value = await api.private.post<Music>(urlMusic, body, {
+            const value = await api.private.post<{data: Music }>(urlMusic, body, {
                 headers: {
                     Authorization: `Bearer ${useUserStore().user.jwt}`
+                },
+                params: {
+                    populate: ['cover', 'artist'],
                 }
             })
-            return value.data;
+            return value.data.data;
         } catch (error) {
             useNotificationStore().error('Falha ao adicionar música')
         }

@@ -43,6 +43,7 @@ import {Music} from "@/model/Music";
 import {MusicService} from "@/services/music/MusicService";
 import {useUploadFile} from "@/utils/useUploadURL";
 import MusicForm from "@/components/forms/MusicForm.vue";
+import {useNotificationStore} from "@/stores/useNotification";
 
 const musics = ref<Music[]>()
 const musicForm = ref<MusicForm>(null)
@@ -56,18 +57,32 @@ onMounted(async () => {
 })
 
 async function removeMusic(id: number) {
-  await MusicService.delete(id)
+  const value = await MusicService.delete(id)
+  if (value && musics.value) {
+    const index = musics.value.findIndex(music => music.id === id);
+    if (index !== -1) {
+      musics.value.splice(index, 1);
+      useNotificationStore().add('Música removida com sucesso')
+    }
+  }
 }
 
 async function addMusic(music: Music, cover: File) {
-  await MusicService.post(music, cover)
+  const value  = await MusicService.post(music, cover)
+  if (value){
+    musics.value?.push(value)
+    useNotificationStore().add('Música adicionada com sucesso')
+  }
 }
 function updateMusic(music: Music) {
   musicForm.value.setMusicSelected(music)
 }
 
 async function putMusic(music: Music, cover: File){
-  await MusicService.put(music, cover)
+  const value = await MusicService.put(music, cover)
+  if (value) {
+    useNotificationStore().add('Música atualizada com sucesso')
+  }
 }
 </script>
 

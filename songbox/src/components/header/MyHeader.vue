@@ -25,7 +25,7 @@
         </nav>
 
         <div class="col-1 col-lg-3 d-flex justify-content-end align-items-center">
-          <span class="d-flex align-items-center user-content">
+          <div class="d-flex align-items-center user-content">
             <span class="icon-user d-flex justify-content-center align-items-center me-2">
               <i class="bi bi-person"></i>
             </span>
@@ -35,7 +35,7 @@
             <div v-else>
               <router-link to="/login">Entrar</router-link>
             </div>
-          </span>
+          </div>
         </div>
       </div>
     </header>
