@@ -29,8 +29,15 @@
             <span class="icon-user d-flex justify-content-center align-items-center me-2">
               <i class="bi bi-person"></i>
             </span>
-            <div v-if="user.username">
-              {{ user.username }}
+            <div v-if="user.username" class="dropdown">
+              <div class="dropdown-toggle"  id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ user.username }}
+              </div>
+              <ul class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
+                <li><a @click="logout" class="dropdown-item text-white d-flex align-items-center" href="#">
+                  <i class="bi bi-box-arrow-right me-3"></i>Sair
+                </a></li>
+              </ul>
             </div>
             <div v-else>
               <router-link to="/login">Entrar</router-link>
@@ -51,6 +58,10 @@ const isOnTop = ref(false)
 
 function handleScroll() {
   isOnTop.value = window.scrollY > 100;
+}
+
+function logout(){
+  useUserStore().logout()
 }
 
 onMounted(() => {
