@@ -27,7 +27,6 @@ const isLoading = ref(false)
 onMounted(async () => {
   reviews.value = await ReviewService.getByUser(useUserStore().user.id)
   isLoading.value = Boolean(reviews.value?.length)
-  console.log(reviews.value)
 })
 
 </script>

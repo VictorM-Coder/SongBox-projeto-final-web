@@ -75,14 +75,16 @@ import RatingBarDynamic from "@/components/rating-bar/RatingBarDynamic.vue";
 import type {Review} from "@/model/Review";
 import {ReviewService} from "@/services/review/ReviewService";
 import {useNotificationStore} from "@/stores/useNotification";
-import {Music} from "@/model/Music";
 import type {CompleteReviewResponse} from "@/services/review/response/CompleteReviewResponse";
+import type {MusicResponse} from "@/services/music/response/MusicResponse";
 
 const reviewForm = ref<HTMLFormElement>()
 const review = ref<Review>({} as Review)
 const ratingBar = ref<RatingBarDynamic>()
 const props = defineProps({
-  music: Music,
+  music: {
+    type: Object as () => MusicResponse
+  },
   isUpdate: Boolean,
   reviewUpdate: Object as () => CompleteReviewResponse
 })
@@ -137,16 +139,15 @@ function setRating(rate: number){
 
 async function addReview() {
   if (await ReviewService.post(review.value)) {
-    useNotificationStore().add('Música adicionada com sucesso')
+    useNotificationStore().add('Review adicionada com sucesso')
     emits('musicAdded')
     resetForm()
   }
 }
 
 async function updateReview(){
-  console.log(review.value)
   if (await ReviewService.put(review.value)) {
-    useNotificationStore().add('Música adicionada com sucesso')
+    useNotificationStore().add('Review atualizada com sucesso')
     emits('musicAdded')
     resetForm()
   }

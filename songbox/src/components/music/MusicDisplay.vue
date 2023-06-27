@@ -12,7 +12,7 @@
             <div>
               <div class="d-flex align-items-center mb-2">
                 <label class="d-flex align-items-center me-2 lh-1">RATING:</label>
-                <RatingBar :rating="props.music.rate"></RatingBar>
+                <RatingBar :rating="props.music.rate?? 0"></RatingBar>
               </div>
               <h1>{{ props.music.title }}</h1>
               <span class="music-data d-flex align-items-center">
@@ -51,14 +51,14 @@ import RatingBar from "@/components/rating-bar/RatingBar.vue";
 import ReviewForm from "@/components/forms/ReviewForm.vue";
 import {useUserStore} from "@/stores/userStore";
 import router from "@/router";
-import {Music} from "@/model/Music";
+import type {MusicResponse} from "@/services/music/response/MusicResponse";
 
 let modalInstance: Modal;
 
 
 const props = defineProps({
   music: {
-    type: Music
+    type: Object as () => MusicResponse
   }
 })
 

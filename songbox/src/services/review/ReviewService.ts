@@ -96,6 +96,7 @@ export const ReviewService = {
                     Authorization: `Bearer ${useUserStore().user.jwt}`
                 }
             })
+            useNotificationStore().add('Review removida com sucesso')
             return value.data as Review;
         } catch (error) {
             useNotificationStore().error('Falha ao deletar review')

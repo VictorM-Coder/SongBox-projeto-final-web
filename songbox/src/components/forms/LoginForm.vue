@@ -11,14 +11,14 @@
         <form id="form-login" novalidate ref="formLogin">
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">LOGIN:</label>
-            <input required v-model="nameValue" type="text" class="form-control" id="recipient-name">
+            <input autocomplete="username" required v-model="nameValue" type="text" class="form-control" id="recipient-name">
             <div class="invalid-feedback">
               Nome inválido.
             </div>
           </div>
           <div class="mb-3">
             <label for="password" class="col-form-label">SENHA:</label>
-            <input required v-model="passwordValue" type="password" class="form-control" id="password">
+            <input autocomplete="current-password" required v-model="passwordValue" type="password" class="form-control" id="password">
             <div class="invalid-feedback">
               Senha inválida.
             </div>

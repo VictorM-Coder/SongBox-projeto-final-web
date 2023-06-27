@@ -12,12 +12,12 @@ import DisplayMusic from "@/components/music/MusicDisplay.vue";
 import MyHeader from "@/components/header/MyHeader.vue";
 import MyFooter from "@/components/footer/MyFooter.vue";
 import {onMounted, ref} from "vue";
-import { useRoute } from "vue-router"
-import {Music} from "@/model/Music";
+import {useRoute} from "vue-router"
 import {MusicService} from "@/services/music/MusicService";
 import {ReviewService} from "@/services/review/ReviewService";
+import type {MusicResponse} from "@/services/music/response/MusicResponse";
 
-const music = ref<Music>()
+const music = ref<MusicResponse>()
 
 onMounted(async () => {
   music.value = await MusicService.getById(Number(useRoute().query.id))

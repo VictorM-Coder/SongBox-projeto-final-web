@@ -1,6 +1,6 @@
 import {api} from "@/libs/axios";
 import type {Music} from "@/model/Music";
-import type {StrapiResponse} from "@/services/music/response/MusicResponse";
+import type {MusicResponse, StrapiResponse} from "@/services/music/response/MusicResponse";
 import {useUserStore} from "@/stores/userStore";
 import {useNotificationStore} from "@/stores/useNotification";
 
@@ -8,7 +8,7 @@ const urlMusic = '/api/musics'
 export const MusicService = {
     async get(page = 1) {
         try {
-            const value = await api.public.get<StrapiResponse<Music[]>>(urlMusic, {
+            const value = await api.public.get<StrapiResponse<MusicResponse[]>>(urlMusic, {
                 params: {
                     populate: ['cover', 'artist'],
                     "pagination[page]": page,
@@ -23,7 +23,7 @@ export const MusicService = {
 
     async getById(id: number) {
         try {
-            const value = await api.public.get<{data: Music}>(`${urlMusic}/${id}`, {
+            const value = await api.public.get<{data: MusicResponse}>(`${urlMusic}/${id}`, {
                 params: {
                     populate: ['cover', 'artist'],
                 }
