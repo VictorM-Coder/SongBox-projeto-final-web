@@ -31,7 +31,7 @@
       <div class="container g-0">
         <div class="action-bar">
           <button class="btn-crud me-4" @click="showMusicModal">Editar</button>
-          <button class="btn-crud-secondary">Remover</button>
+          <button @click="deleteReview" class="btn-crud-secondary">Remover</button>
         </div>
         <h2>Review</h2>
         <p class="lyrics-text">
@@ -52,6 +52,7 @@ import ReviewForm from "@/components/forms/ReviewForm.vue";
 import {useUserStore} from "@/stores/userStore";
 import router from "@/router";
 import type {CompleteReviewResponse} from "@/services/review/response/CompleteReviewResponse";
+import {ReviewService} from "@/services/review/ReviewService";
 
 
 let modalInstance: Modal;
@@ -71,6 +72,13 @@ function showMusicModal(){
     router.push('/login')
   }
 
+}
+
+async function deleteReview() {
+  if (props.review){
+    await ReviewService.delete(props.review.id)
+    await router.push('/reviews')
+  }
 }
 
 function closeModal() {
