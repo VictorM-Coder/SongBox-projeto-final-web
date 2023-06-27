@@ -58,8 +58,8 @@
           </form>
         </div>
         <div class="modal-footer border-0">
-          <button @click="resetForm" type="button" class="btn-crud-secondary" data-bs-dismiss="modal">Close</button>
-          <button @click="submitReview" type="button" class="btn-crud">Save changes</button>
+          <button @click="resetForm" type="button" class="btn-crud-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button @click="submitReview" type="button" class="btn-crud">{{ !isUpdate ? 'Adicionar': 'Atualizar'}}</button>
         </div>
       </div>
     </div>
@@ -68,7 +68,7 @@
 
 <script setup lang="ts">
 import {useUploadFile} from "@/utils/useUploadURL";
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 // @ts-ignore
 import Vue3TagsInput from 'vue3-tags-input';
 import RatingBarDynamic from "@/components/rating-bar/RatingBarDynamic.vue";
@@ -76,12 +76,15 @@ import type {Review} from "@/model/Review";
 import {ReviewService} from "@/services/review/ReviewService";
 import {useNotificationStore} from "@/stores/useNotification";
 import {Music} from "@/model/Music";
+import type {CompleteReviewResponse} from "@/services/review/response/CompleteReviewResponse";
 
 const reviewForm = ref<HTMLFormElement>()
 const review = ref<Review>({} as Review)
 const ratingBar = ref<RatingBarDynamic>()
 const props = defineProps({
-  music: Music
+  music: Music,
+  isUpdate: Boolean,
+  reviewUpdate: Object as () => CompleteReviewResponse
 })
 
 function handleChangeTag(newTags:string[]) {
@@ -89,13 +92,23 @@ function handleChangeTag(newTags:string[]) {
 }
 
 const resetForm = () => {
-  review.value = {} as Review
-  ratingBar.value.resetComponent()
+  if (props.isUpdate){
+    setReviewUpdate()
+  } else {
+    review.value = {} as Review
+    ratingBar.value.resetComponent()
+  }
 }
 
 const emits = defineEmits([
     'musicAdded'
 ])
+
+onMounted(() => {
+  if (props.isUpdate){
+    setReviewUpdate()
+  }
+})
 
 
 async function submitReview(event: SubmitEvent) {
@@ -106,10 +119,11 @@ async function submitReview(event: SubmitEvent) {
       review.value.music = props.music.id
       review.value.postDate = new Date()
       review.value.rate = review.value.rate?? 0
-      if (await ReviewService.post(review.value)) {
-        useNotificationStore().add('Música adicionada com sucesso')
-        emits('musicAdded')
-        resetForm()
+
+      if (props.isUpdate){
+        await updateReview()
+      } else {
+        await addReview()
       }
     }
   } else {
@@ -119,6 +133,38 @@ async function submitReview(event: SubmitEvent) {
 
 function setRating(rate: number){
   review.value.rate = rate
+}
+
+async function addReview() {
+  if (await ReviewService.post(review.value)) {
+    useNotificationStore().add('Música adicionada com sucesso')
+    emits('musicAdded')
+    resetForm()
+  }
+}
+
+async function updateReview(){
+  console.log(review.value)
+  if (await ReviewService.put(review.value)) {
+    useNotificationStore().add('Música adicionada com sucesso')
+    emits('musicAdded')
+    resetForm()
+  }
+}
+
+function setReviewUpdate() {
+  if (props.reviewUpdate){
+    review.value.id = props.reviewUpdate.id
+    review.value.title = props.reviewUpdate.title
+    review.value.review = props.reviewUpdate.review
+    review.value.rate = props.reviewUpdate.rate
+    review.value.music = props.reviewUpdate.music.id
+    review.value.tags = []
+    for (let tag of props.reviewUpdate.tags){
+      review.value.tags.push(tag.tag)
+    }
+    ratingBar.value.resetComponent(review.value.rate)
+  }
 }
 
 </script>

@@ -40,7 +40,7 @@ export const ReviewService = {
         try {
             const value = await api.public.get<StrapiResponse<CompleteReviewResponse>>(`${urlReview}/${id}`, {
                 params: {
-                    populate: ['music', 'music.cover', 'music.artist', 'author'],
+                    populate: ['music', 'music.cover', 'music.artist', 'author', 'tags'],
                 },
                 headers: {
                     Authorization: `Bearer ${useUserStore().user.jwt}`
@@ -57,7 +57,6 @@ export const ReviewService = {
         const tagsList = (tags)? await TagService.postAll(tags): []
 
         const body = new FormData()
-        console.log(useUserStore().user.id)
         body.append('data', JSON.stringify({...reviewData, tags: tagsList, author: useUserStore().user.id}))
 
         try {
@@ -73,11 +72,13 @@ export const ReviewService = {
     },
 
     async put(review: Review) {
+        const {tags, ...reviewData} = review
+        const tagsList = (tags)? await TagService.postAll(tags): []
         const body = new FormData()
-        body.append('data', JSON.stringify(review))
+        body.append('data', JSON.stringify({...reviewData, tags: tagsList}))
 
         try {
-            const value = await api.private.put<Review>(`${urlReview}/${review.id}`, body, {
+            const value = await api.private.put<Review>(`${urlReview}/${reviewData.id}`, body, {
                 headers: {
                     Authorization: `Bearer ${useUserStore().user.jwt}`
                 }

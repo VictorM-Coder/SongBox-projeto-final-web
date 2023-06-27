@@ -15,8 +15,8 @@ import {ref} from "vue";
 const ratingOver  = ref<number>(0)
 let rating = 0
 
-const resetComponent = () => {
-  rating = 0
+const resetComponent = (rate: number = 0) => {
+  rating = rate
   resetStars()
 }
 

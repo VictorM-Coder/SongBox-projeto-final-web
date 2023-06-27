@@ -6,7 +6,13 @@ export interface CompleteReviewResponse {
     review: string,
     author: {
         username: string
-    }
+    },
+    tags: [
+        {
+            id: number,
+            tag: string
+        }
+    ],
     music: {
         id: number,
         title: string,

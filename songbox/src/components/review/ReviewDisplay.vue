@@ -30,8 +30,8 @@
     <div class="bg-s0 padding-to-footer">
       <div class="container g-0">
         <div class="action-bar">
-          <button class="btn-crud me-4" @click="showMusicModal"><i class="bi bi-plus-lg"></i> Review</button>
-          <button class="btn-crud"><i class="bi bi-plus-lg"></i> Playlist</button>
+          <button class="btn-crud me-4" @click="showMusicModal">Editar</button>
+          <button class="btn-crud-secondary">Remover</button>
         </div>
         <h2>Review</h2>
         <p class="lyrics-text">
@@ -40,7 +40,7 @@
       </div>
     </div>
 
-    <review-form ref="modalInstance" id="reviewModal" :music="props.review.music" @music-added="closeModal"></review-form>
+    <review-form :review-update="review" :is-update="true" ref="modalInstance" id="reviewModal" :music="props.review.music" @music-added="closeModal"></review-form>
   </div>
 </template>
 
