@@ -16,7 +16,7 @@
               <div>
                 <RatingBar :rating="props.review.rate"></RatingBar>
               </div>
-              <h1 class="mb-2">{{ props.review.title }}</h1>
+              <h1 class="mb-2 text-break">{{ props.review.title }}</h1>
               <span class="music-data d-flex align-items-center">
                 <span>{{ props.review.music.title }}</span>
                 <i class="bi bi-circle-fill divider"></i>
@@ -34,7 +34,7 @@
           <button @click="deleteReview" class="btn-crud-secondary">Remover</button>
         </div>
         <h2>Review</h2>
-        <p class="lyrics-text">
+        <p class="lyrics-text text-break">
           {{ props.review.review }}
         </p>
       </div>
@@ -53,7 +53,6 @@ import {useUserStore} from "@/stores/userStore";
 import router from "@/router";
 import type {CompleteReviewResponse} from "@/services/review/response/CompleteReviewResponse";
 import {ReviewService} from "@/services/review/ReviewService";
-import {useNotificationStore} from "@/stores/useNotification";
 
 
 let modalInstance: Modal;

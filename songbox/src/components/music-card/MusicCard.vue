@@ -4,9 +4,9 @@
       <img class="img-fluid s-border-radius"  :src="useUploadFile(props.music.cover.url)" alt="capa do álbum">
     </div>
     <div class="d-flex justify-content-between text-card">
-      <p>{{ props.music.title }}</p>
+      <p class="text-truncate">{{ props.music.title }}</p>
     </div>
-    <p class="artist-text">{{ props.music.artist.name }}</p>
+    <p class="artist-text text-truncate">{{ props.music.artist.name }}</p>
   </div>
 </template>
 

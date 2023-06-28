@@ -41,7 +41,7 @@
             </div>
             <div class="mb-3">
               <label for="message-text" class="col-form-label">Review:</label>
-              <textarea v-model="review.review" class="form-control" id="message-text" required></textarea>
+              <textarea :rows="rowsCount" v-model="review.review" class="form-control" id="message-text" required></textarea>
               <div class="invalid-feedback">
                 Campo obrigatório.
               </div>
@@ -68,7 +68,7 @@
 
 <script setup lang="ts">
 import {useUploadFile} from "@/utils/useUploadURL";
-import {onMounted, ref} from "vue";
+import {computed, onMounted, ref} from "vue";
 // @ts-ignore
 import Vue3TagsInput from 'vue3-tags-input';
 import RatingBarDynamic from "@/components/rating-bar/RatingBarDynamic.vue";
@@ -77,6 +77,16 @@ import {ReviewService} from "@/services/review/ReviewService";
 import {useNotificationStore} from "@/stores/useNotification";
 import type {CompleteReviewResponse} from "@/services/review/response/CompleteReviewResponse";
 import type {MusicResponse} from "@/services/music/response/MusicResponse";
+
+const rowsCount = computed(() => {
+  if (review.value.review){
+    const lines = review.value.review.split('\n').length
+    if (lines <= 2) return 2
+    if (lines >= 20) return 20
+    return lines
+  }
+  return 2
+})
 
 const reviewForm = ref<HTMLFormElement>()
 const review = ref<Review>({} as Review)

@@ -15,10 +15,11 @@
           </div>
           <div class="col-md-4 mt-2">
             <label for="artistInput" class="form-label">Artista</label>
-            <select :value="(musicSelected.artist)? musicSelected.artist.id: 0"
+            <select :value="(musicSelected.artist)? musicSelected.artist.id: 1"
                     @change="changeArtist"
-                    class="form-select" id="artistInput" required>
-              <option selected disabled value="0">Selecione...</option>
+                    class="form-select" id="artistInput" required
+            >
+              <option selected disabled>Selecione...</option>
               <option v-for="artist in artists" :value="artist.id" :key="artist.id">{{artist.name}}</option>
 
             </select>
@@ -65,14 +66,14 @@
       <div class="d-flex justify-content-center align-items-center">
         <label for="img-input">
             <span v-if="imageUrl">
-              <div class="img-upload">
+              <span class="img-upload">
                 <img ref="imgComponent" :src="imageUrl" v-if="imageUrl" class="img-fluid" alt="Uploaded Image" />
-              </div>
+              </span>
             </span>
           <span v-else>
-              <div class="upload-icon">
+              <span class="upload-icon">
                 <i class="bi bi-upload"></i>
-              </div>
+              </span>
             </span>
         </label>
         <input class="d-none" id="img-input" type="file" @change="handleImageUpload" accept="image/*" />

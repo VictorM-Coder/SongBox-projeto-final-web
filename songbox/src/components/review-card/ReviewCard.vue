@@ -8,7 +8,7 @@
       <div class="col-6">
         <div class="d-flex flex-column">
           <div class="d-flex justify-content-between">
-            <h3>{{ props.review.title }}</h3>
+            <h3 class="text-wrap text-truncate">{{ props.review.title }}</h3>
           </div>
           <div class="d-flex align-items-center">
             <span class="me-2">{{props.review.author.username}}:</span>
@@ -16,11 +16,11 @@
           </div>
         </div>
         <div class="d-flex text-card mt-3">
-          <p class="mb-0">{{ props.review.music.title }}</p>
+          <p class="mb-0 ">{{ props.review.music.title }}</p>
         </div>
         <p class="artist-text mb-2">{{ props.review.music.artist.name }}</p>
-        <p class="description-text">
-          {{ props.review.review}}
+        <p class="description-text text-truncate text-break">
+          {{ props.review.review }}
         </p>
       </div>
     </div>

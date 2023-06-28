@@ -18,8 +18,8 @@
           <td>
             <img class="img-fluid" alt="capa do álbum" :src="useUploadFile(music.cover.url)">
           </td>
-          <td>{{ music.title }}</td>
-          <td>{{ music.artist.name }}</td>
+          <td class="text-truncate">{{ music.title }}</td>
+          <td class="text-truncate">{{ music.artist.name }}</td>
           <td>
             <div class="d-flex justify-content-around">
               <button @click="removeMusic(music.id)" class="btn btn-danger d-flex justify-content-center align-items-center">
@@ -97,7 +97,7 @@ async function putMusic(music: Music, cover: File){
   height: 100%;
 }
 
-td img {
+td, td img {
   max-width: 200px;
 }
 </style>

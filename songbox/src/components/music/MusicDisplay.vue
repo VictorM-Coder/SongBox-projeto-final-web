@@ -14,7 +14,7 @@
                 <label class="d-flex align-items-center me-2 lh-1">RATING:</label>
                 <RatingBar :rating="props.music.rate?? 0"></RatingBar>
               </div>
-              <h1>{{ props.music.title }}</h1>
+              <h1 class="text-break">{{ props.music.title }}</h1>
               <span class="music-data d-flex align-items-center">
               <span>{{ props.music.artist.name }}</span>
               <i class="bi bi-circle-fill divider"></i>
@@ -34,7 +34,7 @@
           <button class="btn-crud"><i class="bi bi-plus-lg"></i> Playlist</button>
         </div>
         <h2>Letra</h2>
-        <p class="lyrics-text">
+        <p class="lyrics-text text-break">
           {{ props.music.lyrics }}
         </p>
       </div>
