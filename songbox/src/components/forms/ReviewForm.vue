@@ -11,9 +11,9 @@
                 </div>
               </div>
               <div class="col-12 col-md-6 d-flex align-items-end mt-4 mt-md-0">
-                <div>
+                <div class="inherit">
                   <p class="music-data text-uppercase mb-2">I LISTENED</p>
-                  <h2 class="mb-1">{{ props.music.title }}</h2>
+                  <h2 class="mb-1 text-truncate">{{ props.music.title }}</h2>
                   <span class="music-data d-flex align-items-center">
                       <span>{{ props.music.artist.name }}</span>
                       <i class="bi bi-circle-fill divider"></i>
@@ -179,3 +179,9 @@ function setReviewUpdate() {
 }
 
 </script>
+
+<style scoped>
+.inherit {
+  max-width: inherit;
+}
+</style>
