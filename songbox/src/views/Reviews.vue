@@ -8,6 +8,7 @@
           <review-card :review="review"></review-card>
         </router-link>
       </div>
+      <pagination :items-per-page="8" :total-items="totItems" @change-page="changePage"></pagination>
     </section>
   </main>
   <my-footer></my-footer>
@@ -20,13 +21,27 @@ import {onMounted, ref} from "vue";
 import {ReviewService} from "@/services/review/ReviewService";
 import type {SimpleReviewResponse} from "@/services/review/response/response";
 import {useUserStore} from "@/stores/userStore";
+import Pagination from "@/components/pagination/Pagination.vue";
 
 const reviews = ref<SimpleReviewResponse[]>()
 const isLoading = ref(false)
+const totItems = ref<Number>(0)
 
 onMounted(async () => {
-  reviews.value = await ReviewService.getByUser(useUserStore().user.id)
+  await getReviews(1)
   isLoading.value = Boolean(reviews.value?.length)
 })
+
+async function changePage(page: number) {
+  await getReviews(page)
+}
+
+async function getReviews(page: number) {
+  const reviewResponse =  await ReviewService.getByUser(useUserStore().user.id, page)
+  if (reviewResponse) {
+    reviews.value = reviewResponse.items
+    totItems.value = reviewResponse.pagination.total
+  }
+}
 
 </script>

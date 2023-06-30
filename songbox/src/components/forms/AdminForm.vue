@@ -33,6 +33,8 @@
         </tr>
         </tbody>
       </table>
+
+      <pagination :items-per-page="16" :total-items="totItems" @change-page="changePage"></pagination>
     </div>
   </div>
 </template>
@@ -44,17 +46,28 @@ import {MusicService} from "@/services/music/MusicService";
 import {useUploadFile} from "@/utils/useUploadURL";
 import MusicForm from "@/components/forms/MusicForm.vue";
 import {useNotificationStore} from "@/stores/useNotification";
+import Pagination from "@/components/pagination/Pagination.vue";
 
-const musics = ref<Music[]>()
+const musics = ref<Music[]>([])
 const musicForm = ref<MusicForm>(null)
-const musicSelected = ref<Music>({} as Music)
+
+const totItems = ref<Number>(0)
+
+async function changePage(page: number){
+  await getMusics(page)
+}
 
 onMounted(async () => {
-  const musicsResponse = await MusicService.get();
+  await getMusics(1)
+})
+
+async function getMusics(page: number){
+  const musicsResponse = await MusicService.get(page);
   if(musicsResponse){
     musics.value = musicsResponse.items
+    totItems.value = musicsResponse.pagination.total
   }
-})
+}
 
 async function removeMusic(id: number) {
   const value = await MusicService.delete(id)

@@ -9,17 +9,19 @@ import type {CompleteReviewResponse} from "@/services/review/response/CompleteRe
 
 const urlReview = '/api/reviews'
 export const ReviewService = {
-    async getByUser(userId: number) {
+    async getByUser(userId: number, page: number) {
         try {
             const value = await api.public.get<StrapiResponse<SimpleReviewResponse[]>>(`${urlReview}?filters[author][id][$eq]=${userId}`, {
                 params: {
                     populate: ['music', 'music.artist', 'music.cover', 'author'],
+                    "pagination[page]": page,
+                    "pagination[pageSize]": 8
                 },
                 headers: {
                     Authorization: `Bearer ${useUserStore().user.jwt}`
                 }
             })
-            return value.data.data as SimpleReviewResponse[];
+            return {items: value.data.data, pagination: value.data.meta.pagination};
         } catch (error) {
             useNotificationStore().error('Falha ao buscar reviews')
         }

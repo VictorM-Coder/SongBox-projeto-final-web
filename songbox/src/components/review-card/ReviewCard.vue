@@ -16,7 +16,7 @@
           </div>
         </div>
         <div class="d-flex text-card mt-3">
-          <p class="mb-0 ">{{ props.review.music.title }}</p>
+          <p class="mb-0 text-truncate">{{ props.review.music.title }}</p>
         </div>
         <p class="artist-text mb-2">{{ props.review.music.artist.name }}</p>
         <p class="description-text text-truncate text-break">

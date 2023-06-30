@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts" setup>
-import {ref} from "vue";
+import {computed, ref} from "vue";
 
 const props = defineProps({
   totalItems: {
@@ -33,28 +33,28 @@ const props = defineProps({
 })
 
 const currentPage = ref(1);
-const totalPages = Math.ceil(props.totalItems / props.itemsPerPage);
+const totalPages = computed(() => Math.ceil(props.totalItems / props.itemsPerPage));
 
 const emits = defineEmits([
     'changePage'
 ])
 
-const previousPage = () => {
+function previousPage () {
   if (currentPage.value > 1) {
     currentPage.value--;
     emitChangePage()
   }
-};
+}
 
-const nextPage = () => {
-  if (currentPage.value < totalPages) {
+function nextPage() {
+  if (currentPage.value < totalPages.value) {
     currentPage.value++;
     emitChangePage()
   }
-};
+}
 
 const goToPage = (page: number) => {
-  if (page >= 1 && page <= totalPages) {
+  if (page >= 1 && page <= totalPages.value) {
     currentPage.value = page;
     emitChangePage()
   }
