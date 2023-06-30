@@ -35,11 +35,15 @@ Um site focado na compartilhamento de opiniões sobre músicas, permitindo que u
 
 **Frontend:**
 
-Lista as tecnologias, frameworks e bibliotecas utilizados.
+- Vue3: 
+- Pinia
+- Axios
+- Typescript
+- Bootstrap 5
 
 **Backend:**
 
-Lista as tecnologias, frameworks e bibliotecas utilizados.
+- Strapi
 
 
 ## :shipit: Operações implementadas para cada entidade da aplicação
@@ -47,9 +51,10 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
 
 | Entidade| Criação | Leitura | Atualização | Remoção |
 | --- | --- | --- | --- | --- |
-| Entidade 1 | X |  X  |  | X |
-| Entidade 2 | X |    |  X | X |
-| Entidade 3 | X |    |  |  |
+| Música | X |  X  | X | X |
+| Review | X | X |  X | X |
+| Tag | X | X |  |  |
+| Artista |   | X |  |  |
 
 > Lembre-se que é necessário implementar o CRUD de pelo menos duas entidades.
 
@@ -57,5 +62,10 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
 
 | Método HTTP | URL |
 | --- | --- |
-| GET | api/entidade1/|
-| POST | api/entidade2 |
+| GET | /api/artists |
+| GET | api/musics |
+| GET | api/musics/{id} |
+| POST | api/musics |
+| DELETE | api/musics |
+| PUT | api/musics |
+| GET | api/reviews?filters[author][id][$eq]={id} |
