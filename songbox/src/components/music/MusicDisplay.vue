@@ -79,5 +79,5 @@ function closeModal() {
 </script>
 
 <style scoped>
-@import "src/styles/PageDescription.css";
+@import "@/styles/PageDescription.css";
 </style>

@@ -2,7 +2,7 @@
   <div class="p-4 h-100">
     <div class="d-flex justify-content-end">
       <i class="logo">
-        <img src="@/assets/logo-songbox.svg">
+        <img alt="logo songbox" src="@/assets/logo-songbox.svg">
       </i>
     </div>
     <div class="login-group">
@@ -68,7 +68,7 @@ async function login(event: Event) {
   event.stopPropagation()
 
   if (formLogin.value?.checkValidity()) {
-    const user = await AuthService.signIn({identifier: nameValue.value, password: passwordValue.value})
+    await AuthService.signIn({identifier: nameValue.value, password: passwordValue.value})
     if (useUserStore().user.role === 'admin'){
       await router.push('/admin')
     } else {

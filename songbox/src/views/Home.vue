@@ -1,9 +1,11 @@
 <template>
   <my-header></my-header>
-  <div class="bg-radial">
-    <start-now></start-now>
+  <div class="header-margin">
+    <div v-if="!useUserStore().isAuthenticated" class="bg-radial">
+      <start-now></start-now>
+    </div>
+    <music-bar v-if="musics" :musics="musics" @change-page="changePage" :tot-items="totItems"></music-bar>
   </div>
-  <music-bar v-if="musics" :musics="musics" @change-page="changePage" :tot-items="totItems"></music-bar>
   <my-footer></my-footer>
 </template>
 
@@ -15,6 +17,7 @@ import MyFooter from "@/components/footer/MyFooter.vue";
 import {MusicService} from "@/services/music/MusicService";
 import {onMounted, ref} from "vue";
 import {Music} from "@/model/Music";
+import {useUserStore} from "@/stores/userStore";
 
 const musics = ref<Music[]>()
 const totItems = ref<Number>(0)

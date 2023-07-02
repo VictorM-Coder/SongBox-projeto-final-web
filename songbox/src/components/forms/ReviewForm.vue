@@ -113,7 +113,7 @@ const resetForm = () => {
 }
 
 const emits = defineEmits([
-    'musicAdded'
+    'musicAdded', 'musicUpdated'
 ])
 
 onMounted(() => {
@@ -158,7 +158,7 @@ async function addReview() {
 async function updateReview(){
   if (await ReviewService.put(review.value)) {
     useNotificationStore().add('Review atualizada com sucesso')
-    emits('musicAdded')
+    emits('musicUpdated')
     resetForm()
   }
 }

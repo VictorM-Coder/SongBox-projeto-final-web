@@ -40,7 +40,7 @@
       </div>
     </div>
 
-    <review-form :review-update="review" :is-update="true" ref="modalInstance" id="reviewModal" :music="props.review.music" @music-added="closeModal"></review-form>
+    <review-form :review-update="props.review" :is-update="true" ref="modalInstance" id="reviewModal" :music="props.review.music" @music-updated="closeModal"></review-form>
   </div>
 </template>
 
@@ -81,12 +81,13 @@ async function deleteReview() {
   }
 }
 
-function closeModal() {
+async function closeModal() {
   modalInstance.hide();
+  await router.push('/reviews')
 }
 
 </script>
 
 <style scoped>
-@import "src/styles/PageDescription.css";
+@import "@/styles/PageDescription.css";
 </style>

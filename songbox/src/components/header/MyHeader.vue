@@ -12,8 +12,8 @@
 
         <nav class="col-12 col-md-6 order-5 order-md-0 d-flex justify-content-center justify-content-md-end justify-content-lg-center mt-3 mt-md-0 border-sm-0 border-top">
           <ul class="nav">
-            <li class="nav-item">
-              <router-link class="nav-link" to="" >Playlists</router-link>
+            <li v-if="useUserStore().isAdmin" class="nav-item">
+              <router-link class="nav-link" to="/admin" >Músicas</router-link>
             </li>
             <li class="nav-item">
               <router-link class="nav-link" to="/" >Home</router-link>

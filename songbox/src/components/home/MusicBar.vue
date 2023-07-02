@@ -3,7 +3,6 @@
     <div class="row mb-20">
       <div class="d-flex justify-content-between align-items-end">
         <h2>Em Alta</h2>
-        <button class="btn-show">Mostrar tudo</button>
       </div>
     </div>
     <div class="container-fluid g-0 padding-to-footer">

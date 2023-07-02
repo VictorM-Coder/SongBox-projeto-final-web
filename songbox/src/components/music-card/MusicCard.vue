@@ -12,23 +12,11 @@
 
 <script lang="ts" setup>
 import {useUploadFile} from "@/utils/useUploadURL";
-import {Artist} from "@/model/Artist";
+import {Music} from "@/model/Music";
 
 const props = defineProps({
   music: {
-    type: Object as () => {
-      id: number
-      title:string
-      artist:Artist
-      minutesDuration: number
-      secondsDuration: number
-      rate:number
-      releaseYear: number
-      lyrics:string
-      cover: {
-        url: string
-      }
-    }
+    type: Object as () => Music
   }
 })
 

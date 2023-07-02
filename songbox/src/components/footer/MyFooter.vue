@@ -4,15 +4,21 @@
       <div class="row g-0">
         <div class="col-4">
           <i class="logo">
-            <img src="@/assets/logo-songbox.svg">
+            <img src="@/assets/logo-songbox.svg" alt="logo songbox">
           </i>
         </div>
 
         <div class="col-8 col-md-4 order-md-last">
           <div class="d-flex justify-content-end">
-            <a class="m-12 d-flex"><i class="bi bi-github icon-song link-social"></i></a>
-            <a class="m-12 d-flex"><i class="bi bi-instagram icon-song link-social"></i></a>
-            <a class="m-12 d-flex"><i class="bi bi-linkedin icon-song link-social"></i></a>
+            <a href="https://github.com/VictorM-Coder" target="_blank" class="m-12 d-flex">
+              <i class="bi bi-github icon-song link-social"></i>
+            </a>
+            <a href="https://www.instagram.com/iam_victor.martins/" target="_blank" class="m-12 d-flex">
+              <i class="bi bi-instagram icon-song link-social"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/victor-martins-230864233/" target="_blank" class="m-12 d-flex">
+              <i class="bi bi-linkedin icon-song link-social"></i>
+            </a>
           </div>
         </div>
 
@@ -20,13 +26,10 @@
           <h5>LINKS ÚTEIS</h5>
           <ul>
             <li>
-              <a href="#">Playlists</a>
+              <router-link class=""  to="/">Home</router-link>
             </li>
             <li>
-              <a href="#">Home</a>
-            </li>
-            <li>
-              <a href="#">Resenhas</a>
+              <router-link to="/reviews">Resenhas</router-link>
             </li>
           </ul>
         </nav>
