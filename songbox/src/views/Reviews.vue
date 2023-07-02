@@ -7,8 +7,11 @@
         <router-link :to="`/review?id=${review.id}`" v-for="review in reviews" class="col-12 col-lg-6 mb-4 custom-link" :key="review.id">
           <review-card :review="review"></review-card>
         </router-link>
+        <pagination :items-per-page="8" :total-items="totItems" @change-page="changePage"></pagination>
       </div>
-      <pagination :items-per-page="8" :total-items="totItems" @change-page="changePage"></pagination>
+      <div v-else class="d-flex justify-content-center align-items-center p-4">
+        Parece que você não adicionou nada ainda ):
+      </div>
     </section>
   </main>
   <my-footer></my-footer>
@@ -23,7 +26,7 @@ import type {SimpleReviewResponse} from "@/services/review/response/response";
 import {useUserStore} from "@/stores/userStore";
 import Pagination from "@/components/pagination/Pagination.vue";
 
-const reviews = ref<SimpleReviewResponse[]>()
+const reviews = ref<SimpleReviewResponse[]>([])
 const isLoading = ref(false)
 const totItems = ref<Number>(0)
 

@@ -12,7 +12,7 @@ export const MusicService = {
                 params: {
                     populate: ['cover', 'artist'],
                     "pagination[page]": page,
-                    "pagination[pageSize]": 16
+                    "pagination[pageSize]": 8
                 }
             })
             return {items: value.data.data, pagination: value.data.meta.pagination};

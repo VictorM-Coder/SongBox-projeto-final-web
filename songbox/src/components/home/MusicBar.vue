@@ -13,7 +13,7 @@
           </router-link>
         </div>
       </div>
-      <pagination :items-per-page="16" :total-items="totItems" @change-page="changePage"></pagination>
+      <pagination :items-per-page="8" :total-items="totItems" @change-page="changePage"></pagination>
     </div>
   </div>
 </template>

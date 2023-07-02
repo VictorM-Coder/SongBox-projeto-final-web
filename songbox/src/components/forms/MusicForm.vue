@@ -53,7 +53,7 @@
           <div class="col-12 mt-2">
             <label for="lyricsInput" class="form-label">Letra</label>
             <div class="input-group has-validation">
-              <textarea v-model="musicSelected.lyrics" class="form-control" id="lyricsInput" required/>
+              <textarea :rows="rowsCount" v-model="musicSelected.lyrics" class="form-control" id="lyricsInput" required/>
               <div class="invalid-feedback">
                 Campo obrigatório.
               </div>
@@ -88,11 +88,12 @@
 </template>
 
 <script lang="ts" setup>
-import {onMounted, ref} from 'vue';
+import {computed, onMounted, ref} from 'vue';
 import {Music} from "@/model/Music";
 import {Artist} from "@/model/Artist";
 import {ArtistService} from "@/services/artist/ArtistService";
 import {useUploadFile} from "@/utils/useUploadURL";
+import {useNotificationStore} from "@/stores/useNotification";
 
 const imageUrl = ref<string | null>(null);
 const cover = ref<File>()
@@ -101,6 +102,16 @@ const musicForm = ref<HTMLFormElement>()
 const artists = ref<Artist[]>()
 const imgComponent = ref<HTMLInputElement>()
 let isUpdate: boolean = false
+
+const rowsCount = computed(() => {
+  if (musicSelected.value.lyrics){
+    const lines = musicSelected.value.lyrics.split('\n').length
+    if (lines <= 2) return 2
+    if (lines >= 20) return 20
+    return lines
+  }
+  return 2
+})
 
 const setMusicSelected = async (music: Music) => {
   isUpdate = true
@@ -118,6 +129,7 @@ defineExpose({
 
 onMounted(async () => {
   artists.value = await ArtistService.get()
+  musicSelected.value.artist = artists.value[0]
 })
 
 const emits = defineEmits(['addMusic', 'updateMusic'])
@@ -133,7 +145,7 @@ async function submitMusic(event: SubmitEvent) {
         emits('addMusic', musicSelected.value, cover.value)
       }
     } else {
-      window.alert("selecione uma imagem")
+      useNotificationStore().error('ERRO: É necessário adicionar uma imagem!')
     }
   } else {
     musicForm.value?.classList.add('was-validated')
@@ -183,6 +195,7 @@ function resetForm(){
   musicSelected.value = {} as Music
   imageUrl.value = null
   cover.value = undefined
+  if (artists.value) musicSelected.value.artist = artists.value[0]
 }
 
 </script>

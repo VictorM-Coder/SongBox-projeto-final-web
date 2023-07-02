@@ -22,39 +22,41 @@
       "relation": "oneToOne",
       "target": "api::artist.artist"
     },
-    "MinuteDuration": {
+    "minutesDuration": {
       "type": "integer",
       "min": 0,
       "required": true
     },
-    "DurationSeconds": {
+    "secondsDuration": {
       "type": "integer",
       "required": true,
       "min": 0,
       "max": 59
     },
-    "release": {
-      "type": "date",
-      "required": true
-    },
-    "lirics": {
+    "lyrics": {
       "type": "richtext",
       "required": true,
       "minLength": 1
     },
     "cover": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": true,
-      "required": false
+      ]
     },
     "playlists": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::playlist.playlist",
       "mappedBy": "music"
+    },
+    "releaseYear": {
+      "type": "integer",
+      "required": true,
+      "min": 1800,
+      "max": 2023
     }
   }
 }

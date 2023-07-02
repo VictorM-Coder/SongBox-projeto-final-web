@@ -39,14 +39,14 @@
       "target": "api::commentary.commentary",
       "mappedBy": "review"
     },
-    "PostDate": {
+    "postDate": {
       "type": "date",
       "required": true
     },
     "rate": {
-      "type": "integer",
+      "type": "decimal",
       "required": true,
-      "max": 10,
+      "max": 5,
       "min": 0
     },
     "music": {
