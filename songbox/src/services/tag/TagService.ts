@@ -4,6 +4,7 @@ import type {Tag} from "@/model/Tag";
 import type {AxiosResponse} from "axios";
 import {AxiosError, isAxiosError} from "axios";
 import type {ResponseTag} from "@/services/tag/ResponseTag/ResponseTag";
+import {useNotificationStore} from "@/stores/useNotification";
 
 const urlReview = '/api/tags'
 export const TagService = {
@@ -42,7 +43,7 @@ export const TagService = {
             })
             return value.data.data[0].id
         } catch (error) {
-            console.log('erro na pegada')
+            useNotificationStore().error('Erro na busca da tag')
         }
     }
 }
